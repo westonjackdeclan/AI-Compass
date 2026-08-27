@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The THEP AI Compass: seven values across six areas of school life, with the questions leadership teams should sit with and referenced practical points, grounded in Tower Hamlets.">
+<meta property="og:title" content="THEP AI Compass — public preview">
+<meta property="og:description" content="A values framework for AI in schools — reflective first, instructive second. Public preview; full version available to THEP member schools.">
+<meta property="og:type" content="website">
+<title>THEP AI Compass — public preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14202A;
+    --ink-soft:#3B4A55;
+    --paper:#EDF1F3;
+    --surface:#FFFFFF;
+    --teal:#0B6E5D;
+    --teal-deep:#073B34;
+    --teal-wash:#E3EEEB;
+    --amber:#B4690E;
+    --amber-wash:#F6EBDB;
+    --red:#B4321E;
+    --red-wash:#F6E1DC;
+    --red-deep:#7A1F10;
+    --mist:#64777F;
+    --line:#D6DEE3;
+    --line-soft:#E7ECEF;
+    --shadow:0 1px 2px rgba(20,32,42,.04),0 8px 28px rgba(20,32,42,.06);
+    --radius:14px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;font-size:16px;line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:600;letter-spacing:-.015em;line-height:1.12;margin:0}
+  .mono{font-family:"IBM Plex Mono",monospace}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  a{color:var(--teal)}
+
+  /* ---------- header ---------- */
+  header.top{border-bottom:1px solid var(--line);background:rgba(237,241,243,.86);backdrop-filter:blur(8px);position:sticky;top:0;z-index:20}
+  .top-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;max-width:1120px;margin:0 auto}
+  .brand{display:flex;align-items:center;gap:12px}
+  .logo{height:38px;width:auto;display:block;flex:none}
+  @media(max-width:520px){.logo{height:32px}}
+  .brand .rule{width:1px;align-self:stretch;background:var(--line);margin:2px 2px}
+  .brand b{font-family:"Space Grotesk";font-weight:600;font-size:16px;letter-spacing:-.01em}
+  .brand span{display:block;font-size:11.5px;color:var(--mist);letter-spacing:.02em}
+  .layers{display:flex;gap:6px}
+  .layer-chip{font-family:"IBM Plex Mono";font-size:11px;padding:5px 9px;border-radius:999px;border:1px solid var(--line);color:var(--ink-soft);background:var(--surface);white-space:nowrap}
+  .layer-chip b{color:var(--teal);font-weight:500}
+  @media(max-width:720px){.layers{display:none}}
+
+  /* ---------- hero / intro ---------- */
+  .hero{padding:52px 0 8px}
+  .eyebrow{font-family:"IBM Plex Mono";font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
+  .hero h1{font-size:clamp(28px,4.2vw,42px);max-width:28ch}
+  .hero p.lede{font-size:clamp(16px,1.9vw,19px);color:var(--ink-soft);max-width:58ch;margin:18px 0 0}
+  .hero .hint{margin-top:22px;font-size:13.5px;color:var(--mist);display:flex;align-items:center;gap:8px}
+  .hero .hint::before{content:"";width:22px;height:1px;background:var(--mist);display:inline-block}
+
+  section{padding:44px 0}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+  .sec-head .num{font-family:"IBM Plex Mono";font-size:13px;color:var(--teal)}
+  .sec-head h2{font-size:clamp(21px,2.6vw,27px)}
+  .sec-sub{color:var(--mist);font-size:14.5px;margin:0 0 24px;max-width:62ch}
+
+  /* ---------- matrix ---------- */
+  .matrix-layout{display:grid;grid-template-columns:1.35fr 1.15fr;gap:26px;align-items:start}
+  @media(max-width:900px){.matrix-layout{grid-template-columns:1fr}}
+  .grid-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px;box-shadow:var(--shadow);overflow-x:auto;position:sticky;top:78px}
+  @media(max-width:900px){.grid-card{position:static}}
+  table.matrix{border-collapse:separate;border-spacing:3px;width:100%;min-width:520px}
+  table.matrix th,table.matrix td{padding:0}
+  .corner{text-align:left;vertical-align:bottom;padding:4px 6px 8px!important;width:118px}
+  .corner span{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--mist);line-height:1.3;display:block}
+  th.dom{cursor:pointer;vertical-align:bottom;padding:6px 4px!important}
+  th.dom .dlab{font-family:"Space Grotesk";font-weight:500;font-size:11.5px;color:var(--ink-soft);writing-mode:vertical-rl;transform:rotate(180deg);margin:0 auto;white-space:nowrap;padding:6px 0;border-radius:6px;transition:color .15s}
+  th.dom:hover .dlab,th.dom.on .dlab{color:var(--teal)}
+  th.prin{cursor:pointer;text-align:left;vertical-align:middle;padding:0 8px 0 6px!important;max-width:118px}
+  th.prin .plab{font-family:"Space Grotesk";font-weight:500;font-size:12.5px;color:var(--ink-soft);transition:color .15s}
+  th.prin:hover .plab,th.prin.on .plab{color:var(--teal)}
+  td.cell{cursor:pointer}
+  td.cell button{width:100%;height:44px;border:1px solid var(--line-soft);background:#F7FAFB;border-radius:7px;cursor:pointer;padding:0;display:block;transition:transform .12s,background .12s,border-color .12s;position:relative}
+  td.cell button:hover{background:var(--teal-wash);border-color:var(--teal)}
+  td.cell button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  td.cell button .dot{width:6px;height:6px;border-radius:50%;background:#C4D2D3;margin:0 auto;transition:background .12s,transform .12s}
+  td.cell button:hover .dot{background:var(--teal)}
+  /* crosshair */
+  tr.rowon th.prin .plab{color:var(--teal);font-weight:600}
+  td.cell.colon button,td.cell.rowon button{background:#EAF3F1}
+  td.cell.active button{background:var(--teal);border-color:var(--teal-deep);transform:scale(1.04)}
+  td.cell.active button .dot{background:#fff;transform:scale(1.5)}
+  /* locked rows — content available to THEP member schools only */
+  tr.locked th.prin .plab{color:#93A3AB;font-weight:400}
+  tr.locked th.prin:hover .plab,tr.locked th.prin.on .plab{color:var(--ink-soft)}
+  tr.locked td.cell button{background:repeating-linear-gradient(135deg,#F2F5F6,#F2F5F6 4px,#EAEFF1 4px,#EAEFF1 8px);border-color:var(--line-soft)}
+  tr.locked td.cell button:hover{background:repeating-linear-gradient(135deg,#EDF2F3,#EDF2F3 4px,#E3EAEC 4px,#E3EAEC 8px);border-color:#B9C6CC}
+  tr.locked td.cell button .dot{display:none}
+  tr.locked td.cell button .lk{display:block;width:9px;height:11px;margin:0 auto;position:relative}
+  tr.locked td.cell button .lk::before{content:"";position:absolute;left:1px;right:1px;bottom:0;height:6px;background:#9DACB3;border-radius:1.5px}
+  tr.locked td.cell button .lk::after{content:"";position:absolute;left:2.5px;right:2.5px;top:0;height:6px;border:1.5px solid #9DACB3;border-bottom:none;border-radius:3px 3px 0 0}
+  tr.locked td.cell button:hover .lk::before{background:var(--ink-soft)}
+  tr.locked td.cell button:hover .lk::after{border-color:var(--ink-soft)}
+  tr.locked td.cell.active button{background:#E1E7EA;border-color:#9DACB3;transform:scale(1.04)}
+  tr.locked td.cell.rowon button,tr.locked td.cell.colon button{background:repeating-linear-gradient(135deg,#EDF2F3,#EDF2F3 4px,#E3EAEC 4px,#E3EAEC 8px)}
+  .tag.lock{background:#E7ECEF;color:var(--ink-soft)}
+  .gate{border:1px dashed var(--line);background:#F7FAFB;border-radius:12px;padding:20px;margin-top:4px}
+  .gate .lkbig{width:26px;height:30px;position:relative;margin-bottom:14px}
+  .gate .lkbig::before{content:"";position:absolute;left:0;right:0;bottom:0;height:17px;background:var(--teal);border-radius:4px}
+  .gate .lkbig::after{content:"";position:absolute;left:5px;right:5px;top:0;height:16px;border:3px solid var(--teal);border-bottom:none;border-radius:8px 8px 0 0}
+  .gate p{font-size:14px;color:var(--ink-soft);margin:0 0 10px}
+  .gate p.lead{font-size:15px;color:var(--ink)}
+  .gate .cta{display:inline-block;margin-top:6px;font-size:13.5px;font-weight:500}
+  .rowlist li.lockrow{cursor:default;color:#93A3AB}
+  .rowlist li.lockrow:hover{background:none}
+  .rowlist li.lockrow .k{color:#A9B6BC}
+  .preview-note{display:flex;gap:10px;align-items:flex-start;background:var(--teal-wash);border-left:3px solid var(--teal);border-radius:0 10px 10px 0;padding:12px 15px;font-size:13.8px;color:var(--ink);margin:0 0 22px;max-width:70ch}
+
+  /* critical value: Safety before adoption — most important, shown in red */
+  tr[data-prin="safe"] th.prin .plab{color:var(--red);font-weight:600;position:relative}
+  tr[data-prin="safe"] th.prin .plab::after{content:"·";display:inline-block;margin-left:5px;color:var(--red);font-weight:700}
+  tr[data-prin="safe"] th.prin:hover .plab,tr[data-prin="safe"] th.prin.on .plab{color:var(--red-deep)}
+  tr[data-prin="safe"] td.cell button{border-color:#EFD5CE;background:#FDF4F1}
+  tr[data-prin="safe"] td.cell button:hover{background:var(--red-wash);border-color:var(--red)}
+  tr[data-prin="safe"] td.cell button .dot{background:#D6A197}
+  tr[data-prin="safe"] td.cell button:hover .dot{background:var(--red)}
+  tr[data-prin="safe"] td.cell.rowon button,tr[data-prin="safe"] td.cell.colon button{background:#F6E1DC}
+  tr[data-prin="safe"] td.cell.active button{background:var(--red);border-color:var(--red-deep)}
+
+  /* reading panel — extended for questions / practice / TH grounding / reading */
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px;min-height:280px;max-height:calc(100vh - 110px);overflow-y:auto}
+  @media(max-width:900px){.panel{max-height:none}}
+  .panel .tags{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+  .tag{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.03em;padding:4px 8px;border-radius:999px;text-transform:uppercase}
+  .tag.p{background:var(--teal-wash);color:var(--teal-deep)}
+  .tag.p.critical{background:var(--red-wash);color:var(--red-deep)}
+  .tag.d{background:#EEF1F3;color:var(--ink-soft)}
+  .panel h3{font-size:19px;margin-bottom:10px;line-height:1.22}
+  .panel .commit{font-size:15.5px;color:var(--ink);margin:0 0 14px}
+  .panel .empty{color:var(--mist);font-size:14.5px}
+  .panel ul.rowlist{margin:10px 0 0;padding-left:0;list-style:none}
+  .panel ul.rowlist li{font-size:13.8px;color:var(--ink-soft);padding:8px 0;border-top:1px solid var(--line-soft);display:flex;gap:9px;cursor:pointer;border-radius:6px;transition:background .12s}
+  .panel ul.rowlist li:hover{background:var(--teal-wash)}
+  .panel ul.rowlist li:first-child{border-top:none}
+  .panel ul.rowlist li .k{font-family:"IBM Plex Mono";font-size:10.5px;color:var(--teal);min-width:74px;padding-top:2px;flex:none;text-transform:uppercase}
+
+  .sublab{font-family:"IBM Plex Mono";font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--teal);margin:20px 0 8px;display:flex;align-items:center;gap:8px}
+  .sublab::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+  ol.qs{margin:0;padding:0;list-style:none;counter-reset:q}
+  ol.qs li{counter-increment:q;font-size:14.5px;color:var(--ink);padding:8px 0 8px 34px;position:relative;border-top:1px solid var(--line-soft)}
+  ol.qs li:first-child{border-top:none}
+  ol.qs li::before{content:"Q" counter(q);position:absolute;left:0;top:9px;font-family:"IBM Plex Mono";font-size:10.5px;color:var(--teal);background:var(--teal-wash);border-radius:6px;padding:2px 6px}
+  ul.pts{margin:0;padding:0;list-style:none}
+  ul.pts li{font-size:13.8px;color:var(--ink-soft);padding:7px 0 7px 16px;position:relative}
+  ul.pts li::before{content:"";position:absolute;left:2px;top:14px;width:5px;height:5px;border-radius:50%;background:var(--teal)}
+  ul.pts li b{color:var(--ink);font-weight:600}
+  .thbox{border-left:3px solid var(--teal);background:var(--teal-wash);border-radius:0 10px 10px 0;padding:12px 14px;font-size:13.8px;color:var(--ink);margin-top:2px}
+  .go{display:flex;align-items:flex-start;gap:9px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line-soft);font-size:13.5px}
+  .go .arrow{font-family:"IBM Plex Mono";color:var(--teal);flex:none;padding-top:1px}
+  .go a{font-weight:500;text-decoration-thickness:1px;text-underline-offset:2px}
+  .go span.src-note{display:block;font-size:11.5px;color:var(--mist);margin-top:2px}
+
+  /* ---------- radar feed ---------- */
+  .radar-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:18px}
+  .filters{display:flex;gap:7px;flex-wrap:wrap}
+  .filters button{font-family:"IBM Plex Mono";font-size:11.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);cursor:pointer;transition:.12s}
+  .filters button:hover{border-color:var(--teal);color:var(--teal)}
+  .filters button.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+  .sample-note{font-size:12px;color:var(--mist);font-style:italic}
+
+  .feed{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.feed{grid-template-columns:1fr}}
+  .item{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .item .meta{display:flex;align-items:center;gap:9px;margin-bottom:11px;flex-wrap:wrap}
+  .src{font-family:"IBM Plex Mono";font-size:11px;font-weight:500;color:var(--ink);background:#EEF1F3;padding:3px 8px;border-radius:6px}
+  .urg{font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+  .urg.action{background:var(--amber-wash);color:var(--amber)}
+  .urg.aware{background:#EBF0F2;color:var(--mist)}
+  .date{font-family:"IBM Plex Mono";font-size:11px;color:var(--mist);margin-left:auto}
+  .item h3{font-size:17px;line-height:1.24;margin-bottom:9px}
+  .item .summary{font-size:14px;color:var(--ink-soft);margin:0 0 14px}
+  .item .domlist{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+  .item .domlist span{font-family:"IBM Plex Mono";font-size:10px;color:var(--mist);border:1px solid var(--line);padding:2px 7px;border-radius:999px}
+  .lens{margin-top:auto;border-top:1px solid var(--line-soft);padding-top:13px}
+  .lens-btn{width:100%;display:flex;align-items:center;justify-content:space-between;background:none;border:none;cursor:pointer;padding:0;font-family:"Space Grotesk";font-size:13px;font-weight:500;color:var(--teal)}
+  .lens-btn .chev{transition:transform .2s}
+  .lens.open .lens-btn .chev{transform:rotate(90deg)}
+  .lens-body{max-height:0;overflow:hidden;transition:max-height .28s ease}
+  .lens.open .lens-body{max-height:400px}
+  .lens-inner{padding-top:12px}
+  .ai-flag{display:flex;align-items:center;gap:7px;font-family:"IBM Plex Mono";font-size:10px;letter-spacing:.03em;text-transform:uppercase;color:var(--mist);margin-bottom:9px}
+  .ai-flag .badge{background:var(--teal-wash);color:var(--teal-deep);padding:2px 7px;border-radius:999px}
+  .ai-flag .badge.unrev{background:var(--amber-wash);color:var(--amber)}
+  .lens-inner p{font-size:13.5px;color:var(--ink);margin:0 0 10px}
+  .verify{font-size:11.5px;color:var(--mist);display:flex;align-items:center;gap:6px}
+  .verify a{font-weight:500}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:34px 0 60px;margin-top:20px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:30px}
+  @media(max-width:720px){.foot-grid{grid-template-columns:1fr}}
+  footer h3{font-size:16px;margin-bottom:8px}
+  footer p{font-size:13.5px;color:var(--ink-soft);margin:0 0 8px;max-width:52ch}
+  .foot-brand{display:flex;align-items:center;gap:16px;margin-top:30px;padding-top:22px;border-top:1px solid var(--line-soft);flex-wrap:wrap}
+  .logo-foot{height:52px;width:auto;display:block;flex:none}
+  .foot-brand span{font-size:13.5px;color:var(--mist)}
+  .foot-note{font-size:12px;color:var(--mist);margin-top:26px;border-top:1px solid var(--line-soft);padding-top:16px}
+
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <img class="logo" src="data:image/png;base64,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" alt="Tower Hamlets Education Partnership — Improving Schools Together">
+      <div class="rule" aria-hidden="true"></div>
+      <div>
+        <b>AI Compass</b>
+        <span>A values framework for schools — public preview</span>
+      </div>
+    </div>
+    <div class="layers" aria-label="Framework layers">
+      <div class="layer-chip"><b>Layer 1</b> Values</div>
+      <div class="layer-chip"><b>Layer 2</b> Commitments</div>
+      <div class="layer-chip"><b>Layer 3</b> Live registers</div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Reflective first, instructive second</div>
+    <h1>Seven values. Six areas of school life. Forty-two considerations of how AI interacts with schools in Tower Hamlets.</h1>
+    <p class="lede">AI technology is increasingly interacting with all domains of school life. As a borough we believe that working with this technology should be values-driven. To understand the opportunities and challenges AI presents, this framework makes those interactions visible and offers the questions a leadership team should sit with — rather than a mandate. It is a practical starting point for considering AI, grounded in the reality of running a school in Tower Hamlets.</p>
+    <div class="hint">Select a cell to open its questions — or a value or domain heading to scan the whole row or column</div>
+  </div>
+
+  <!-- ===================== MATRIX ===================== -->
+  <section id="matrix">
+    <div class="sec-head"><span class="num">01</span><h2>The principles × domains matrix</h2></div>
+    <p class="sec-sub">Every value shows up differently in each area of school life. The grid is the map; the panel opens each intersection in three moves — <b>ask</b> (the reflective questions), <b>consider</b> (referenced practical points), and <b>here</b> (how it lands on the ground in this borough) — with a link to go deeper.</p>
+
+    <p class="preview-note"><span>This is a public preview. Three of the seven values are shown in full; the remaining four are available to THEP member schools. The Radar below is complete.</span></p>
+
+    <div class="matrix-layout">
+      <div class="grid-card">
+        <table class="matrix" id="mtx">
+          <thead>
+            <tr id="domRow"><th class="corner"><span>value ↓<br>domain →</span></th></tr>
+          </thead>
+          <tbody id="mtxBody"></tbody>
+        </table>
+      </div>
+
+      <aside class="panel" id="panel" aria-live="polite">
+        <p class="empty">Nothing selected yet. Tap any square to open the questions where a value meets a domain — or tap a value or domain heading to scan the whole row or column.</p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================== RADAR ===================== -->
+  <section id="radar">
+    <div class="sec-head"><span class="num">02</span><h2>The Radar — curated guidance, watched for you</h2></div>
+    <p class="sec-sub">A small, trusted set of sources — DfE, KCSIE, JCQ, ICO, UNESCO, TeachAI, EEF — watched for changes so heads don't have to trawl. Each item carries a plain summary and, where reviewed, a Tower Hamlets reading. This is a Layer 3 instrument: it changes often; the values above do not.</p>
+
+    <div class="radar-head">
+      <div class="filters" id="filters">
+        <button class="on" data-f="all">All</button>
+        <button data-f="action">Action needed</button>
+        <button data-f="Safeguarding">Safeguarding</button>
+        <button data-f="Academic outcomes">Assessment</button>
+        <button data-f="Curriculum">Curriculum</button>
+        <button data-f="Teaching">Teaching</button>
+        <button data-f="Culture">Culture</button>
+      </div>
+      <span class="sample-note">Curated August 2026 — verify at source before acting</span>
+    </div>
+
+    <div class="feed" id="feed"></div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>How the two halves fit</h3>
+        <p>The matrix is the stable framework — Layers 1 and 2, reviewed every year or two. Its questions are designed to be asked in SLT meetings, governor sessions and staff CPD; the practical points beneath them are where reflection turns into a decision.</p>
+        <p>The Radar is Layer 3: the volatile material, watched and summarised so the framework never has to be rewritten just because a new tool or update landed. Every Radar item is tagged against the same six domains as the matrix, so a head can move from "what changed this week" straight to "which of our commitments it touches."</p>
+      </div>
+      <div>
+        <h3>The tool obeys the framework</h3>
+        <p><b>Transparency:</b> AI-written summaries are labelled as such.</p>
+        <p><b>Teacher-in-the-loop:</b> the Tower Hamlets reading shows whether a human has reviewed it yet.</p>
+        <p><b>Verify at source:</b> every reading link goes to the original — the tool signposts, it does not replace the guidance.</p>
+      </div>
+    </div>
+    <div class="foot-brand">
+      <img class="logo-foot" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAACgCAYAAAAvgIjXAABGJ0lEQVR42u19e1xTV9boDq9TIPKQou0on603g73VTwVBi8FXqxdmiMFWDQ/xQ4wXRW1Mvw7Wjj9HHH5OHVKvGItoPlBzUTARW8A4A1871SrIKIrVq/2mTG47XLQvhyIYxQ0C9w+z6GZ7TnJCwsue9fvlpyTn7Mfaa6+9XnstERrhgDH2Lysv60pQJFgceaexqSn2cn29OCI83JL7yX8G3qu92D4qapZ39OhnO6t//Kfn/nXrD2CM/RFCiGGYVq62xJs3u/3Hb8Lc3DrmMF+MG9f+246OUWV37jxKGD/+PhJAgJ8RiEYyEwnatu2eJSenG/5GCKGT5eXLvrlzJ/PzRx3Pkc/31F3p/O6XE/2+un3bc/YD3PzdLyf6PR8Q2I4QQjU3b/jBc9LJU9pqbt7wk06e0tZTd6Xzgg8TBM//6tmxX/8iOFhzTiQ6ulcuf8YWoxFv3uxmycnpxhj722JGAgggMJMhBIPRIAZJBGPsrz9eknvubsvrNGMYSJBOntKGEELP+vqeftnTq2P0L3/5wMvT83LM1GkfNjY1xYZKJAZgJCqVyjtw716MEEI7RKJugewEEJjJMACVSuWt1WrbSSYyWAzEHkwcN67z+YDA9ukeXt/5iX1rI8LC2ydPmvQuKZmIN292K4yY4YMQQgnLFfeRSNQjkKEAAjMZRAC1ASGE6q9f3/+/zvwlebgwEXsSzNyAwI/mS6MrJ4SEVNIqTy9zmS3tWRIc7CGoRAIIzGQAJZGW+S0dRW8UdSGEULHRqPzTt7d3jwRGwqUWrZ//agVCCLExF5VK5Y0QQlqttl0gTwEEZuIiII2XxUaj0tL+IPqzjz+RXfBhgkYy0oGxAHN5ddr0T14KHP2AZi6C8VYAgZm4gImApwZsI4Z/fJX81e3bnk/jIpDMZW5A4Ef+ry3cKLiWBRCYiQvUGhDxMcb+ygP7G0eaSuMK5qKYLX0rZuq0DxmGaTUYDeIl8UvcBSlFAIGZ8ARw+Q5HT81QMZVfPz/u7WSFolBQewQY7uAxbBjJrVu+CePHW36u0ggbWHGwu6LuUjdIKaRXSwABBMmEnZHcFxgJt4Qy3cPrO3lMzPZQicQg3rzZbfXDh4zg8RFAYCZWwBj7b6qoeHhg+XIsMBJ+TGVuQOBH6amr0ki1UMCMAIJkYoUGsznh96dPHRQYCT+Inzmr5I8rU9fTkbWC+iPAz46ZDGZIPBks1ny+5j9HRc3yRgih6d4+s77o7PBCCKF/3r8fx2GvGNZSCunxQQihdSdOMF7nz7sJ6o8APxtmsu7ECebA8uVYpz9yOD11VdqL6cpuVzOOlz29Op57+eVzMVOnfYiQ7TQCcOOYhLI7dx65/7/GnB///ncfuEQ4HJmMdPKUtiWRM49NFI8ShU+duh7mI3h9BHjqmQmI4xV1l9KMF2r2OLs5gYFAsBfX/Rbx5s1u5N+OqATAbMrKy7pa29v3tVnuR5EpDoYDgwGmsnhGxG8hNkWwpwjw1DITkEhcwUjIC3ShEomB/t1gNIi/WK54sAOhHtzR4eeoZIIQQmAc5noHEixZ2h9ED3YKBC54VzpHn5qYpGYYphXwLZC5AE8NMyG9Nq64qLdhWngDuElJqaP3ar8LT2RSKkEIIeXlKw9oqQaeaWxqij1bUx071IyFNNCC210gdQFGPDMh79k4K5GANAInL0ggQyXOG4wG8RmRWyd9+oPUcv2H7+eW1V1aMRSMZcO08IZX58z5NHzq1PWCyiPAiGcmpCHQ2TgS8F7II2ceHmom8gT09IhwR4cfSDD0uDDG/qeuXP7DP65+/trV2tqgwbr1LJ08pa1w3foJgg1FgBHNTICRYIz99xUUXPz8Ucdz/WUkpB1AvHmzW3N29qjh7K2AJNfKy1ceIPSTsRfUocFMM7lhWnjDm2vWzBIYigAjkpnAZloSv8Rdf7wk972a86n9PVnJi24j1aBI2ozI76quX3vDeKFmz0AzFZKhCCQvwEDBgFz0A6JVF+iOXbnVlIwQ6nGUidB3UYa7NMIHHxhjf8bLq21daamX9bvDCKHDDWZzwtmAwNiBCt7Lu1YfigoKLmKMZ3GpYgIIMKwkEziB98rlzzQ2NcX2J0Qe4iWmjhl7LlQiMTytorlKpfLumDOnm5RWGszmhIqqqh3OqIT2cPu7uMVrQyUSg+HWLV8h56wAw5aZgBpSeqEmr6zu0or+MBIg9pGs1jgKdOmOm19++d5AJcymDdlkMioBBBgWzMSZgDTa5bvuxAlmQU+3589NFKe9XwOVrpLGtxB+L8CwYSak58ZR9+/EceM6MxbFFEAY+M+dsNkqFQ5UagbSdSxIKAI4Cx6uIP6y8rIuiKVwRuQWTsi+xtpNFRUPrQx2wkDcrq65ecPvVP2VOoxx5B+8vO5hjUaQUAQYOmayqaLi4QFFAq6ou5TmiJ2EPBVXfrjSvSCuQCwQ8pNMZXtPjxsjErUihNJKL9Q8QAitcCVDKbt0cczi8Bloh0jU/bLR0CVgXoD+gpuzDeyVy5/BGPs3XKp7hy+Rb5gW3vC7uMVr4e5I0RtFXQIjYYcdIlE3FOZaNlu6YW5A4EdkaQxXSCf64yW5GGN/SOYtYF2AQZdM1p04wTAM01pRdymNvJJvj5FAANW6EycY4RKafSBtGempq9Iwxup9BQUX867Vh7qi/fdqzqe2We5HYYxnrTm9xiKomwIMKjPBGPtnZmZ2WA2EvLw3JCMRCLZ/UPJDiYcVf7P8nIgupiHvWn2o3/GS3KLUorRAVWCHsD4CDBoz2VRR8fCAVounzAjf7ygjMRgNgn2kn5A0JumR4dYtXytDUSOEUNHX/3fVrW++6XG27XN3W17X6Y+g9NRVaYJnRwBHoV+uYbJYFh+3ZZ/bq0J+DZcA6Y53padn4rhxnQkvTCwWYlAEGHDJBOIgEELonSL9foGRDA1QGz2tou7SuW/vthxwNsDtq9u3Pd+7fTvVutZqUGUFhiKAPXDrDxFbcnK6Sy/U5LFldacZiWK29K3e6+8CIxkQhqJSqbzlkTMPJ7wwsdhVbZ+72/J61fVrb2i12nbIMieAAC5jJhhjf4yxv05/5LC9mBK4sCePnHnYcOuWr3BLdeAYCvw/NTFJ/a50jt4VruOamzf8jBdq9mCM/Wuqa7pQT49IwLYALmEmBqNBnJmZ2dHY1MTrqvzcgMCPFs+I+C1CCC0JDvYQUD1wADWIGIZpTU9dlaaYLX3LlbEoWq22ffswK3IvwAi2mYBkMWVGeCwfOwkY8ATPzeCqPEHbtt2TR848XGw0uiGEnErcXXPzhp/ywP7GBrN5bahIZBCwLIDTkonBaBAj9DjfBlmQig0mjhvXCXYSiKoU0Dx4DMWSk9O97sQJJlmhKFwSOfPYxHHjOp1VdyqqqnYg9GTtIQEEcJiZfLFc8QAhhM7WVNuVSp4PCGyPmTrtQ5VK5S1IJEMDY5ct60QIocUzIn77q2fHfu1se3yjmwUQmIlNwBj77xCJujHG/vakEtINrNFovAT0Dg3AejEM0/rmmjWzNkwLb3BWOik2GpUg9QgYFqBfzGRTRcVDhB5nVLfnvSHdwIJUMvQqD1zak8fEbHfWIPunb2/vxhj7H1i+HMPFQwEE4M1MgHj4SCVzAwI/kkfOPGwwGsRL4pe48+lcuKE68AwlaNu2e6ESieF3cYvXOsNQam7e8Nv3OCm1vzRa6u7o2o3UtRZo1AXMhAzXPlV/pc6eVJKamKRG6LF9ha9UIkgvAw/N2dmjDEaDOFQiMRzd9FaAMwzl80cdz1Vdv/ZGgiLBAhKrI4xtpDJkgYr4gYc9JDIM05qyd88Ye1JJb5SrSMTbewM3j7VabbszojP5vnBBjX0dIS3j3IDAj9DkKf26x2N9Zw/G+EO4UsEFBqNBXFNd00WujzRa6j7SvHswD6CrgZ4HLQmNJGYmsjeptw4XJv25/sp+W1IJGF353uEAwtbpjxzO3KRe6arJyGSylmNHjwYLLIRb0kQIIZ3+yGE+qQt+NJ7sU6B9tGKpW59yGSxlSGBtMzIyjhaXlCSSa3OosFAyUioLwhjZaDT13/5tFDBIVx5eI/0OlJs97tiG8S5bjOTXz497m5RihG07fCUUjLG/ePNmt9TEJLUrI2T5gMlkChTu+PBbI/Iz4pkJJDI+WV6+zJY4/Kyv7+ml8fGl606cYIbDxP1GjaoSSNI2sRZa1UFn0z+KN292Q7OlPQJWXafaFBuNyn0FBRdXK5Vm+EDA6EjwoLmxTexoXV0nxtj/T9/e3m1LKvnjytT1DMO0ep0/79ZfqUQmk7W4ajJt9+7FjBTEDxVAFT8wmPfHbnK2pjrWkpPTXWMtxyGAcwASm6X9QXT21q0Sk8kU2Ps5/aelI2UeTxhgMzMzOyxabXfV8mVvOMJVHdEdNRqNl1arbU9NTFJHhIW3z1u08InNHxEW3r47J2e5yWQKJL8/c+6c7vLVelZmMV8aXXns6FGk0Wi8pNFSd4QQAiMg/D0cdXUoFwJjhfH2d6yk0RBONmiLYZhWyHiPMZ7Qn5o85+62vG64dWtjwvjx97f39LjtEImcZiowTlesF23YZ8MljaMl8UvcXaWm0+spjZa6u7J9R8fARgeDStwpe/fcfTFd2c32Sdm7525F3aU0hB4nlR6ocaxISbnjHxDwiPzYe4ePVKJSqbz5qGVsbbF9x9YWn+9cOVZHJTJ4tv769f2v7fgdZltnGvfkb+oC3THIpUKOD9rNyMg4Sr8PBA3/uhoH/V1TW8xNpz9ymJ4HtEG3xXcuXN+x9bUyNdWhHL/9HYPLJRPIhNbY1BRr78WYqdM+RAghr/Pn3Zzlnk+I0tU1XRqNxmu1UunQO1qtth0kJIyx/8ny8mV/Pn36EUII/SouziMiPNwSKpEY4Dl71nM2aYvtO7Y27H1H1xd2dqzk2BrM5oTL9fXiP58+/ehXcXEeS+PjS+l3tVpt+7oTJ5jJkya9m/DCRG/IruaoDQYIEzYyZGZTq/lpUY6sF5/xsLVVoNOVwW8kjrKzs5+Bvthw5AgdMwzTamsu0D5ICaSE4CqPEOldcnQMLgeSQ3JJJS+mK7t1+iOHB0NCYpNMbJ34GGP/YqNRyfYefFakpNwpNhqV8I6tE8hgNIjh9IXT0WA0iOn2yLagPXoc0C+JZ0g0xXes0D/0Rc9Tpz9ymE0igN/IdhBCCBIecUmitiSTlL177tqSBOxJJuRNdEfWi+yT7kOnP3KYC58ZGRlH4X17OFKpVN58JRNyPPZoLyMj4yiNM4yxP9fz9j4rUlLu0NKerflxjcHlkolV9223Jol+3ZbhNSIsvJ3US4fa3gAniv54Sa69uBWrYeugpf1BNMZYDe+KvX2qZTKZjLTRtLa372MYJg2Ih2GYViBKsj398ZJchFAaKWnsKyjIJNsymUyBhwoLS+H0aDCbE1YrlR/QNiF7YwWi6UKiBPrdzz7+RMbVXuYm9Uqxt081xrg0MzOzAyGEkEjUA7e7i43Gt2tu3vgPR3Df2NQUizGuZPvNlmQCUmSx0ajckZW1iy8OEEJpbAZ3PvMvLilJ1OmPdO4rKIgqLimRcOHIKimkIYR4qQJkUu+M9HSbtFdcUpLYdu9eTLHRuCVZoSh0Vt0wmUyBcvniPnthtVJptoVPGEOD2bwxVCIxuDK2pZeZfPXRv4lgQ9ozyE2eNOldMOQhrXbILeFWsTovc5M6ke97mZvUK6HwFMMwrUvj40tPV1TsoomTRLZ1sWLotj77+BMZ/d3V2tog8m+ZTNYC7TSYzQk7srJsMhI2IscYq23Fathr73RFxa5khaKQNoYfeuYZvDQ+vvRP3962mUyJDGI7hU6Ke+qufBAWFdXM9mzbvXtBtgzwG1UquT1GQuOg2GisZhimsL/z5xMgSa+5LZBGS921Wi2vQ4wa464Gs9kSKpEYXHW7PkGRYMnIyDjKB5/WZz7AGFe6sgJBLzMpeqOoy55UgtBPofPrTpxgdohEeCgZiUql8oYoRTLakt7EXISWvXWrxE/smwsnnjVOJdEW4+JaLHJBGpuaYunn3NzdfwPiJZtEIpPJWvxGjaoKe2VWJzAn8pnPPv5ENl8aXZmgSLCb8YxrziaTKbDBbE4go1cZhmkVb97sxjBMa+mFmmM1N29kOHIy8mUG9GmekZGxmA0H8xYtNHFJGefPnFmAMbZr2yDDDbjGZwtHJ8vLlyGECvls4GKjUckmkdiai8lkCgyLitqBMa4sKy/rskWj9HxsSehjxo5N5IsLUqLulVRdwUz4hgVLJ09pmy+NrkQ9PaIFJ4yeBxAaMmZC1u5ZrVTK2JAYJ5dviQgPtyCEUJxcLj5dUbGLTTUARlBsNJ4hmRIQFhBwa3v7Pq5NRRLg2ZrqJwzYYAQsNhqV9BiSk5KOv/X226dCJRIDys9HGGN/qxG8l+mYTKbAeYsWxiKEbDITzd7cIogh2VdQcDF769Y+Ir11bAbSDW3Jyem29nlOOnmKSwujk9CFRAkIoUI2wifD7QlVsc/4abXG3vytTP2YrWfYpAowWvLZwKuVyl1c7ZNzofu5Wlsb1BgTE5ugSDA0mM0bEUJo3qKFsfRYNHtzi+ZLoyu5xjAhJMQdIYRufvnlezKZrIWkrW07d5rfXLNmFuCCpCdXxnf1HpgIIdQxZ043WH/tvTAhJKQSiUQ9fNMMDBSAfeJkefkythPuUGGhJFmhKAyVSAyhEokhWaEoPFRYKKGRSHBotDQ+vpT+/XRFxS4gCjZ1hjo1/THG/vRzL77wQikQ1Td37mTSY83Pz08JlUgM5MkdKpEY4uTyLWyMz9aJDEQMiZGeUL/+etGTS+oKlUgMcwMCPxqM9aPxHCeXbyFzsLBJH/ZC8un5h0okBrofmUzWkp66Kg2emS+NruzvxmLzemr25hZB++R6pqeuSqOlhMv19WKEEAIaZevjxpX69fA72wekCrGPz2f0PrhaWxu0Jj19ycny8mUTQkIq5fLFLyYnJR3X7M0t2p6VtREYqqtULTeEEDqwfDlmGKbVns78rK/vaYQeh1IPl3s49Oa0cngTuC3BcwCGRnqDwgYDImYLyedzT8LWqbn+LXU74Iu2pZhMpkAuyzttw+EiYAC/UaOqyHk3NjXFkgQsk8la5ixYcIbLKIox9nf03s5oxVI3YJb2wB319G6YoNGj/0UeH6/U7M0t0uzNLYoID7esTE1NXa1UmsEjQktVjhjluWJTwqKimm397ghcrq8Xs0m6XJ4X+lmgXdJ7RENLa6sCaJjtA4xgQkhIJdtBWVFeXpiRnn5wzNixzenpa++GvTKr09/b+81QicTg6oqNbjCJirpLafZylrw6bfon5P2O4QBshk6S4yYoEiwJigQLJPRhkz6AETAM08q22RqbmmLXpKcvIYlBJpO10CdNWXlZF5ukZEtM5WEo4w1hr8zqJCW3CSEhlXFy+Za6y5dX/PD990HHjh4NBgMsrdZCsS2GYVqPbnorgItx0B/p5CltxtLSj1rv3vUgP8lJScc5DaFWL2CRXq+fL42uvPrXi56RERHHKsrLC/trh6FtMlqttt1eDJGzm8jqYeK1ZvbmZCvmI0GRYKmprumCf8kDAA4ProOSzQidnr72LrjByVgh5yUT62Wt7774Yq69h2OmTvsQ9fSIhnsdHK5bzHyIZ2l8fClNBGdrqmOnzZz5Ln3C0Z6M1vb2fTSByWSylgkhIZX2pIqBwgOoemReEz4n++wHuJlPH3BXh2/b4AWBGJvIiIhjXMZzAdiZIByQcF1Ao9F4qVQq72SFotAWE6eZCmTOgzV32gCbMH78fT5eHADxO++IUHb2sEY4mSWOZCB8iJ1hmNYVKSkttCeFfi4k+NkIq0FWYus5sOj32pv6YaknGRhbG7bwADYGuBtiy9BO3t95Py+vma+E8EVnhxdCCB165hnMx5jPlSeExkdYVFRzf1WdoQJH1tNP7FvbH9pmk8Lg7/z8/JT669fbdufkLLcnEWVv3SqRx8TEarVaA9yFcoqZgPGNt2iXk9NdplI9Gi6LFxYV1WzL5QUXumCjvBIdnUwjGGwNwHBeiY7eYjKZDnKJqDKZrGVJ/BL3xqamSjLQjW3hxN4+1bZEybCoqGY2QykAGIdBXXJkrfojxsM4rYTOayP/8/79OGDcUqPBXcsj9ohmvOBKnS+NrpwQElLJMEzrvEULD/Mdw1CA2NunGiHUhyFuz8rayMXwG5uaYiuqqnb4iX1rI8LC2ydPmvRueuqq3ngVe2sCXiESdytTU39ToNOVAZ189vEnst05OehQYaGksakpNk4uF4N95mptbRBNo+Ddc0VovQdCj112fNyBEJMwHAqQwwn4i+BgDULoIE2oEE9BLhKXKy/slVmdKD+/192s0WhK2dzIJPPhkjToDQJqE9wvoU/87K1bJSHBz3axLWax0agkT2+ZTCazEkfhQOLWGp36xEaxBeAaJ3X6J/AcPiMOIWSwuob74DZOLt9CBtRxufyHE0SEh1tod+yOrKwPuLL9ZWRkLLZG30qs67kcIRRsC2ekfUuj0XjRMSsymex9hFAZ/f1qpdJMjQNc8n3U1zbL/ShX4cONy5BEw9yAwI+GU+YnWwZVk8kUuCMr64Nio1EJVu9io1HJFmpMGmzJRbWVaCnslVmdcOqTagyb1EHbKqzMrw9UVJz6mr5/Yg2GOshGwIOBXz40QdpN+DwPrlA22xG41skT2FlD7EAD22FiMpkC6fsvcF/Gnm0oIiz8CfWwu6vrffAmshn3ueiUHAd81qSnL3GFqsXJTPiUsQAONpzSMiYoEiyZmZkdDMO0urm7/4YVmenpB9PT195NT197NyM9/SAbcUJ8A0g6UPOH9IzQAMyHYZhW652eFls6ManicDE/cN9Nnz79+JixY5vZGImjNhMXiPAD8jzbHIpLShLJ+bsyN/BAAcMwrduzsjbS60nOBebDxki2Z2VtJP+ePGnSu2y0MWbs2ObVSqWZlSasBxubJ6e4pCSRzNpWUV7+hEQLnkZXeHTc+HoYXMnBXCmOG4wGcZFer9fszS1y9P3kpKTjtKuUjLewZ2BTqVTetPeHTeKx6sTt4MJjC54D+Pof/1jG1d6ba9bMGq55dvlIJhBnwjBMK9d6cc1/OIJKpfJmCy4k58I1H83e3CK4aAfeGKudyMQladiisaXx8aVsnhwyaxv927adO80TQkIqwSPkNDP5W8uPPs42MpTqD0TipiYmqR1hKMlJScfz8/NT6PGT8QdsG97N3f03ZG4MhmFauS670WMkJR+2E82W7QVCzQcrJaUjag5Cj7OvYYz9bXlyrOH0yGA0iFMTk9T25j8QId8DAckKRWG+TreW73jJcP5e5mrdzKmJSWo+7l2ZTNayPStrIxlnkpubu4GvaxhC7V2ZDN6j8splxtm7GAN1Wlq5tMxe34QrWC329qmGyFE2+wibsY8eP2xYtv63bdv2sEiv7037p9FovE6Wl2tkMtkueuxspVITFAkWONEwxpVgnec6eeYtWmiCEHFIQajVanuNf1z2JG0/b3PDu5CS4YIPE0SXvLB3Wmu12vawV2Z1tt2712d8IMWBmxpjLNlXUHCR9jLIZLKWsKio5lfnzPkUIbScjTGD2seGc1o15FI9tVptO6hcJC5/FRfnUaTXczI1NvwmKxSFDWazBSH0AR/aS09d1edyKEXHG+DCJ1c75OFCJc9K0emPdPKlKVdGwIrez8v7W961+lB7D74rnaNPT12VJt682Q0uhpEXmQaCqbBJPFx90ONpbGqKtTx4MI/MF0u6Hel3+I7BVv+OMFo6K1ZjU1MseUGQHisdv+Fof47CuhMnmL1y+TNV16+9YbxQs8fegQP1k/gePCTuG8zmBHKt5kujK+Guii0a4EMffNbP0T64DiDY1Aj1dek7QntsdMxFF2w0wfddvvTvkGTC98F6H991CCGUEhnpeQAhDOUhren5MyFWwpUDdKQd4LIQEo4e36412NrIfNrnW1TM0TmTRZzsjZcNpwNtO1nQ0+3JMExrg9n8gO87jU1NsVzFuWxJlFbGYXAUr65YP3v0yhfPpE3M+lVaf2iPviDIRRdsOOb77kAwkn5JJnBqHVi+HBcbjcr8L/5PQXzwc1+C/jVcqpJBxnE6yGs4Z6dns7UMFS7JKOLVSqX5gg8TZO+dDdPCG/pDB3CakzgYaWVE+ayno3Nyth22y4MDSVMenz/qeI7Pg+D6A0ZiDcHffeubb3pujQ+5MlgnJl8YScQ4HD00ZeVlXainR4Q6OtC8RQtNF3iUE/38UcdzN7/88j2M8btld+48GsnzHw7r6Ww7g70HHMosjzH2B4mErrfiTGZvSJRMl0YkP2RyZ0faJZMwP01g69q6q5ix4YTRFwp28UlLUHPzht/lq/W9oj65pvB/JMCASkQkzh2R4iFNx6DYTP707e3dyQxTCBIJm0EOpJbhcCo/7XWPreH5A9rHkvgl7o4yrNGhoVJ7Ko6rC34LwE7zfFVNUoJxxkzhUCoBCHMmGQnkOclFj412fFM5kjq5I1fzuSzZttqFd4ZzlXlSP4bs7baeh7IZdIJoV0NNdU3Xkvgl7tM9vL6rQch+CEFPz8eNTU2xDWYz59oNNiMBl/pQ26EGw75F7iWGYQx83oc6S1BXp7/M3iFmcvPLL99jC72XR8487IiORt/BsJUOkQbrXYQUrt8hjR3ELxA/Bbsqce5QSVIQqahWq/My0tMTZTJZi05/JJrMN+rqMRlu3fK1Jpv+C7JjqP/ReLJbaTy5ViaTKbieWZGSguYtWmhKT12V5uqynEMpxQ0H2lmTnr6ku6vrfYJJIC7vGjAMnf7I4R1ZWTKTyRR4uqJiF8ZYAjgbMGZilUaS2dSb/pz4wEnbLPejHLnQlZyUhGxNlvyebnc4itZckhRNKPCcRqPxgsxw1vnJIJpyINSHGiLZ9OwHWMHHq2NvPU0m08qMjAzPBEVCykBLJBD7cbK8fFlEeLhlJEip/YWrV67cabp1y27CaBIvq5XKPik09MdLcoHRO2rAdcgAy8ZIoPTFcDA8ucKIxIdAwcjFx6jI53nIxB4ZEXEsMiLi2Gql0kwax0iJqz/GOEeNn6TRVBotdWcYpnVCSEilKHKGp6vwaC2KdZjMx0qPme9aktUWydwfGo3GC1zbGenpByMjIo7pj5fkOuq2JsfkKH3wxQeftbL3TNiMGcG2tAAYD9wFYusDLv6xpUWw17/H3IDAj2oQSu0vUXze/uAiQo+TTFtycrqdITAoT/HX6upiR06ewWBm0Bdfkdne80DQMPb38/Jsqj5kyHSx0bgFIbQLocfh2bSEQ7bbHymS7XdHU04mJyUd9/T0/J/kd1NmhO8nbwN/9vEnstTEJDVIU1xSFZ+a0Fw1oDHG/rSkZC/y1N6zbBKgrfXmm32OazzwPpukYK9tewF5GGMJHF5u7u6/CZVIDFxtsvVPjtPD2eQor06d9q/70eMMbK7YtEvj40uTFYp2vpuVDJ1H6HHKf66yASSnZkM2+Rud7pEMlb755ZfvQV9keLIjz9Ph2vsKCniP1Wp0LUQIoWNHj/bpl+1KAd0v21UIsg8Ib0fop+qNjqY+sDx48HGRXk+vY5pOf6S3sp7JZAq0MikD21pC39S9FX8uex75DlR6pJ+zVnHkFT5Pqp80Htk2u631BnsX1xxs9WELN2QkNRe9s40HLmVa5xDMRbtseOBaG6cTQ396/dr/Qah/bmFX2Bnoi2IymWz5+3l5O7is1quVyg96DcfyxS+C+LYkfok7aQzW6Y+YUhOT1JBJna0vhFC6TCZrKTYatyyNj++t4WvveWibYZhWtot+JpMpkFR1elUDa43ajIyMo2A3gbSPJNHpj5fkkrowW79ANKShOiwqqlmnP1ILBjnAp05/xIQQUjsj1QFerGL0SoLpzEMIGXT6I4epMcNaNpO3WxubmmJ3ZGX1rmFYVFQzvf7FRuOWJfHxpSxGeHS1tjZodW1tH9xay1/MamxqiiXpQ6c/YmLDY4PZvJFhGAM5Ly5aJNcN2iXpDC4iEu+ly2SyFozxEwXJ6LbJ9WTDe0VV1Y6rtbVk4a3lMFegVZ3+yGHSAaLVaoPJ/kg8kPYwsv/MzMwOjLG/xwth0/8ifdTxXH9vDncHBR92JaNobGqKLTYaWXVNd9RjIG6cshZptlUqATJ9we9Bo0d3gfgGxbOId3tFcFsFocnC2lqtNg10dTvPw2ZK4zJAs30XFhWViRAqbLt3L6bP72vW9DJZe/1aC3lJyDo+VA5bCdt7kTNn/asz3hQYn/54SR91afKkSe9yJZeGtbxaW2uGMdO1atjWHyG0KyI83MKW85SLNhpjYmJZ2l7JsS69dXpt4Z34e1ex0YiWxseXarXa9qt/vehpK28wHCbgWbFB50+sp619QOLzUGGhBNaFbQwUXay0RU+HCgslmZmZHR5enp6XEUIrhoM12jrAY1y/b9u5MxMhNAs452Ck9eNTWR6hx6UDDEbDmwzDtOr0Rw6zXaknFwiq8+mPl/BK3CyTyVpsJajiO06SULlONLbat+/v3DlBFDmD/yHT1fV+RkbGIvK71UplDI2XxqamWPJkZMOVyWQKtKYc1HONl2Yw1lKqvGFCSEjl5fr6ZXRbXO3DeNjwTtdTAgbHlUiLrQ9SimFrm/bAII6LhWxrSaqXrtizarU6Lz8/P8XtpcDRD9AIgau1tUEMw7SeLC9fRouv+Trd2h++/z6o7vLlFa5KqgN90Yv5w/ffB/3w/fdBdEKc1vb2fXR5UEhs9JsNG14iEyIBEaQmJql/+P77oG07d5rJd6BwFnwOFRZKUhOT1Bhjf7a8n2zj5MIJURv5CdDszS06VFgoobPBOcq4TSZTYHFJSSL5oduIk8u30NIA4Irun4yfoDfLocJCCT3HNsv9qEOFhZIfvv8+iDqQzCReAbfAWGkc1l2+vIKtfRgPjfd8nW4t4I+cA1mGlgZ5fLzyUGGhhEzuBUXdSJsmzPVQYaEEkiCRY7p65cod2ggOz+frdGvJ39jqYdszqJN038cOde9eDMbY32Owcoq6EiztD6LJBfzh+++DiFPWgDGu5HNK8wG6/ChJeAihQp3+SDRCSBYnl29xRz0GhmEsVhuDDKGfEvbo9EcO79m925PLs0B7c9gMu2wGU4DzZ84ssDFOA8a4ksxMbp3XE9GzpA6u0x8xsYm4rgB5fLwyWaHQFxuNStgQ8xYtNGVmZnaA/YRPO0SN4j507Cf2rWUzdsL3fNqet2ihicirwrpPyBKuMpmsxdL+IHpfQUEm62HIUudZJpO1QFH7BrO5T+kUGC9IrpAPViaTtfiNGlWVr9OthahVa8Lo4KZbt3rbnrNgwRlCFetTcYGr5jQXw87Pz0/Jz8+HrwpXpqY+gpyycDh5MAzTWlp74Yf+2kzcmu+kIYQOeJ0/7+YsgQHntfXMsaNHEc2twcin0Wi8IMn0ihTn46GsImwQ2RepJ2dmZnZAWgbwqqhUKu/01FVpZHSvf0DAo8xNapv9cHlzwABMhoTzwSNkeYPMbgzDtE6fPr0UcpLSkh39ntUg7dRastKLu/tvtm3b9hBckMkKRSHGuJQwRK9E//t/98sgX2w0bomTy1FEeLgF8qva8ujZq3J440r9etLVPn369L8ghJZR9MFlD3sCamtrPeypWnFy+ZbtWVkQXGfBGKvZDPQIocTikpJEiFplGKZ1ZWpqH/xHhIdbXHG5EhK2k3jSaDRlq7u63odx/fn06Uce1s4iyy5dbOwPQ5nu7TMLIXTg0DPPuMyTY+vkYNt4ZB7MwciRSvZFRq5a6/RwGmy59GJbeACDrtVbwymZ0IXT+0tEwMCsVfecIsACna6MbU5Fen2fwlL7Cgou0pX7HMEVrAXpMYE14nIDk4XLgd5eiY52iBYdhaioqEeff/65PbovpL9rMJs3IoQ+sGesnTFjxh2u8TvLVGC9pNFSd646Px62fPd8APz2gxUFay1dyXoyUWHCvL0MtvqiJRxyrlqttn2jSiUHV+X7eXk73lyzZhZpNIOcm/7e3m9ai1B94AhDOVlevux0RcUuuNOCOFy0VjtKIhshETh57et//AM8Q81kjAq90QbyUID8uVqttv2V6OhkkpFs27nT/IvgYM1Sq2vXkfKgEOFJJvC2tfadnZ3/0XbvXsz7eXnNUM/IUSZG0gdI1mRCoy4kSgBV2U/s24lzc/3VajUnIyfLuYIBds/u3Z5hUVHN27OyNp6tqY5ts9yPoj1VjU1NsTdu3DD4BwS4fM91d3W9r9Vq9Va8ISvj7VMZ81dxcR4ewMHVBbrTCKEkRzv6/FHHc65kJFw3TklR8GR5eW8VP7AmY4w3WMUvLy5PT0R4uOV0RUXv3xkZGUdzc3M3sBnSSL0ZRFfaZWf1UHxAWtblMTF9vBNwqQ0hhIqNRjFbH1abSh+vTmNTUyzGuFKtVi+g3dVseAl7ZVZncUlJ72llLUrdW3ZUrVbnkX2zFQOzBz11VzqRD+OwlEOWUWAYppWMpCSz4JPlPDDG/myqmC3gukvy4gsv9Kp3ZNDamLFjEwFf+TodiggPt2SkpztkZ6Ppo6y8rE91xoyMjAXWKn5IJpMFca0fOQdIQt5gNieQKo6f2DcWaKnBbE6w5fl0JZhMpsBio1EJ3ig44GiVygO49x9Xpq4vv3QxqT+dwWm9vafHbYdI1O3MoO0hKDkp6Xhubu4G0pgE3gI2NxjNiMi/i0tKEqlLc2y6dR+dlQwoo99JTko6TveRuUm9ckVKigwhhGwRKlm3FmIZ2PqwnoYxbIZTcpzZW7dKsrdubWbDCVm21BHgc8mPSzJiE5u1Wm07Pe/VSqX5/by85tVKZZArDOgMw7RmZGQ8Aokse+tWyVUqaA3gcn292BHJhI0+0tPX3l2RktLr3i4uKQkkpUfreOwyRZVK5W2LliIjIgJt0barISM9/SBX1Qe/UaOqQiUSgxuJdD7ZtGiouXnD71T9lTqMsX/Lpk3MYGTTYhimVS5f/CJb9TNbhMBW5IjPO3Fy+RaO2IE+Im5ubu4Gtupq9vqAYl62+pDJZC1y+eIXbWVLpyvEcbUDHhA0DIBt3tlbt0pcwUhAXXvr7bdP2cMJMFdH++Vab3oOQB+Ots3moqfHCGVop0yZ8uuBllC46B4hhNwA4esP7F/XX49O2aWLY/jYIFh1/X5UCsQY+ycoEixsDAUmSMdtAHFxFX+SyWQtbN9jjP2TFYpCrr5IXZk0BLIVBOPqA27mchXmAgYA4jNbnAnG2D9UIjHodAcDbI1TLl/8YrJCUWjLLgJeI7bat/3d0Gw2C1CxaWbNtoZk/Rt41l48EdiKQiUSA1eRLIjFsFV4DeYQFRX1iB4P0IctvNN98AESP7ZoT7M3t+jNNWtmqVQqb7Zbw46ArfFz0SXMy2A0iEWAEDqnq6MA2esdzYMAxjhH+iIvN0GuCtC9xd4+1XDKkNf2yVu39DugJpDvSKOl7jAPtr6u/vWiZ9grszrZ6piQz5OBSnQf4KUhVUWusdH1kAFnXOOEmikwTsALnUmLqy3S5rFRpZKframOfY9HUmmonwOGREcSZtnCFYwNjJQ11TVd0mipuyPJleg+SJyQGfK58EEyRra+2eiDjNvhWj9bc+Cic5Iu2PYS3S6JN3JubOtPeyPl8fHKAp2ujAt38J3LmAkQEePl1Wa4fdsnYfz4+wMtIvcnGVB/PU/2+nJFYiJbjJhv+wM1ztILNXmZRw5l8KGDf1/wWnH41KnrXTXmgQZXeCPtzcGZPgayba72aGZSpNfr7dGsB3BjZwdQc/OGn/54SS5KXZVWo1J1DwYRAIJpURq8B7byU9ASESkl2OoL3I9wMiLEnVcUAs2gH1vjIk9xR8fGhRPoG/7lyvthC9adOMEs6On2XDwj4rdldZdWOFtK1pY6QkohUHrVldXnyD7Ik7g/7dLj4aIPwLszYwf80JKFK9p29CCicUcefiJAwKlvv7nlLKH0SidE9CUSYMQDpJfQ6Y8ctqfqkDTwNKZGfJoB9qwjkgkJvd6cb++2OB2o1CudCPBUARRdEzDx8wBHs+r1YSZnRG6dX92+7ZL8nufutrzeYDYngHFHWJqnBxzNyvcHL697AtZGDkDULdwRChk/Xi6Pj1fK4n59ks2cQIMHQggtiIrysHxzq80V+nDNzRt+v0foIKTZF0TdEQ49PSIkEvUg9Dja2ZFXWzZtYhBCQrGtEQKwT8k7Qjdu3EBFVg3Hnr3Nbd2JE8yS4GCPZ319T7tqUDU3b/hVVFXtwBj7rzm9xiKIyCNYjz5h9EUIoarr195whSoswPAHsgyvSqXy5ntXy2NBVJQHwzCtFXWXPulvOD0b5F2rD/U7XpJblFqU5ntC/lBYopFJVGBIVR7Yv4ePKjw3IPAjhB4bbbXLlwtSyQiWUPhII30kE4gHkUfOPNyfcHo+9pMDy5djwX4y8sDRkIGJ48Z1jv7lLx8wDNO6oKfbU8DgzwvcyCI9b/+PWLMrG6+5ecPv96dPHcQY+ysvX3lQ8kOJh4DykQNnRG6d5LV4e/B8QGD74hkRv0UIoS+WK/qdDpTt4Bluh9FIVt3JsbtyHm4gxgZt23bv5YkTX3O1dALuYktOTnfSmKRHwhYdOQR6tK6uk2GY1tq21oN8jPPTPby+g/87c3sc4pOgyh98x1d3H0g80gmV+L7D9RkMeqLxRl4fcKVzxA0aXP3wIcMwTCvovK5Wd0ov1OQhhJDh1i1fgW08eeIWG43KfQUFF8mSmVwniS0itPebvVSG9N8YY/9/3r8fx/bOj8aTfRgG5Fddd+IE4yxOVqSk3FmtVJpXK5XmFSkpdxrM5gS6OBQ9TjY82pJo7G1mum2D0SC2pkj4G7lR2fBKjgfmwfYh23KGudgqLEZHikN2O+jbFp744qiXmSCEUMecOd0YY//50ujKgZBOyuourdDpjxxOGD/+vrPE9jQBnMKW9gfR2Vu3SiCWgzR8kaeHrdKf5LNspzj9LvkM3WbQtm33LDk53SfLy5c1tvzoz8VI4F/p5Clt1twkCIqxkcRrDw/ksxUVp76G6+7w2ZGV9UGD2ZwA0dX0uCFMnsYjeQmSHgtbNUe236HIFEI/pRdobGqKhTbZ1gT+/ubOnUx6LuSHTADFtnb2pDHABX3hDxjZipSUO8BYgaYam5pirXldghqbmmLphFVkv/S8uKpMYoz9e20Ye+XyZyDL93QPr+9qEPJzNUNBk6e83mA2V9qqZyrAT4vGJo6yiadsz9K3pG2dWPQGUqlU3prsbC+UnY3eKdK/euubb3ro8Y1WLHX70Xiye7Riae+BRCcw5ipFysYMYSyQEQ7SLiD0OAM8V/Erui86CTZdYpPrXVtlU+F92KRwHZ/GH9u8QoKfjcjX6RIQelxBAJJ4zVu00ATMl24Dbp7T5UTZbpiz4ZY8oKx4k0GZFFsVD9hKktI0YyuvrhtNRAzDtL65Zs0sV0snpEG22GhUarXadkFCeRLgtAARGMRhnf7IYWsJCPNqpdJcbDQqEXpc3pF8dszYsc0rUlLuQOo/+H1fQcFFsi0Qb+H3MWPHNsNvWq223Vpi1EyrOLRqQ65tRVXVDrItkujJsb+fl/e3FSkpd2h1AaG+ibGXxseXLo2PL92elbVx286dZrJIOz3uYqNRSW6Uq7W1QWz44Joz21jp39k2Ib1GtIqaoEiwJCsUhckKReGcBQvOwPepiUnqZIWiEHLdkmMFlc6acV+5r6DgIvwG/a1MTU2F1I6kSghjKDYalZA+FDLYgcoIYwCJjw2HoJ6ROCBVJHLMsNYe9OkASLN6diSuviVac/OG37O+vq9ijJ/IrSHA46Q7UJgKTmi2Egomk+lgg9lsgbrALKUQvsYYS9RqtSfL7yvnS6MrK6qqdpAJm+EUKzYalZfa7nqZTKbA0T6MGxsjoZnKj8aT3dnGk33agty8dGJottKm0mipu0aj8T9ZXr7FZDIdpOstz1u00ATZ5+lyolCitdhoRJb2B73fUSkrv8YYS/THS3JZ3l1p3ShqtVqdV1xSkkjjBCGE0lNXpfkHBCCTyRS4PSvribKdJpNppdjbp1qr1RaSeUjIm8o0M2JpIxAh9EGD2YwmhIRUrlYqd5EpQ+H/IePH37G+/wE9BsilwlZGVSaTtUDxcfJ7qDrYYDZbEEJoR1YW3e9Knf4IamxqqqSTfEPOYdZaN5sqKh6+PHHia0tmzvphIDYMedqxGdUE+AngVAZCqLt8mbWUK/wGv9MV5OB32GAkI9HszS2C30wmU+Dpiopd6+e/WmFLErE1Bqj41nbvXszNL798j+4HqtGRAGkckhWKQsiKRtoWMjepV2ZkZByFJMt0e2yZ2rZnZW0kM96RpUjpsXz28Seym19++R4wEhonUM6Vbd7bdu40b9u50yyTyVr+Wl1dbEulJIFMYk73t2f37sVQ5UAmk7WcOXdOR2fvg/dlMlnL2draz8/W1n6O0OPcxqmJSWqabuouX16xPStro9jH5zNoA/oFmjlbUx27IyvrA5PJFLht507zmXPndNDuZx9/IiMZETmmq7W1QW5sus/YZcs6GYZpXRw+I3Kg1B3lgf2NIObSRjUBftoQoRKJAVJbQoU5thR68FuoRGLoXWDrCYXQT0l/4+TyLfk63VpoUyaTtaQmJqlDJRIDFEAzmUyBE0JCKsl+gKmQNhI2qSpUIjGQG0rk6TmT7ocU9+mTuthoVFraH0QfKiyU6HQHA3S6gwGw4YtLShJBaiPby8/PTzlUWCgh6+bAWPy9vd8kNwr9bm5u7gbYwJ+eP/8qjDU9dVVaqERigLy6RH1eRFYgRKg3ebcEocclIDDG/nwKpkGC5uSkpOPQH6hybffuxYAR2W/UqKrwqVPXp6euSoO+w2bMCIYqjiaTKXB+VNT0+VFR08l9TKZEBdqACoUwj/nS6EoumsreulWyYO7cdLJdWE+EHhed9/f2flOzN7dILl/8Iith7BCJug23bvkyDNP66+fHvT0QG6Xm5g2/vGv1odaSDP6QR0FgIdyut6t/vejJWYSLKOHAVfoR8tOSm44E8ur5F1999Rd7dhJ74zWZTIE9nZ2XyPYxxv50KVMg/samptjTFRW7MjepV54sL18GyXfeevvtU7byvTaYzQlqtToP9HpyLF1IlGBrvI1NTbE2KhMg8iTmkkpIdQoYBJ9cPmQu397+iLSMvWtrreXbhxaIusIymaxFsze3CMaybedOM5urGuxuXB4htrmR7YZFRTWT6wnzTE9dlZagSLBwnjJLgoM9MMb+S+PjSwdCOgEgGYogofQfsrduleiPl+Tq9EcOg6g+Z8GCMyRjAS+BSqXyni+NroQTGQxsUExs286d5r98+qnY0dIWbCD28fkM+omMiDi2Wqk0kzYJktGFSiQG2GAZ6ekHgfhB7Ib6LGzjLi4pSaRTJDAM0+qOenpPYltzlslkLfKYmO3077tzcpbD71BOwmQyBd7v7MzM3KRemb11q2TeooUmkAYdyW4PElpxSUkiMEOw57i5u/8GahuRBlSyfVrC8xP71oLrmrZpgK0oc5N6Jc0gScYn9vapBonram1t0HxpdCW0y1bHCGJUnjDA0gsB3O3fF7xWXHPzxrqBZCjIWjRKMMraMM5aVRYuIA2LUL4BpADwkhAuUoNOfyTWZDKtJI2QMpms5YXwMLfMw49VHnAB21JxZj/AzSaEAtnUtAkhIZVWVeED2qhMPmtVC7w1Gs2Gtnv3YsBOQrYVJ5dvmRASUmkldhk9bnlMzPazNdV9EvuAZAJjsaoRu+h34+TyLaESiUGnPxLL1vb2rKyNDMO0+gcEIJlM1uLr6anR7M2NhQ1K2iCAORJlXVlpOVmhKNTpj0RnblKvtNZ+6p0rFDPX6Y9EQ10eqG4AuFsaH99bjJw00MMYyFpKMEaZTNZitZmks43J0v4gmnwP6lj1urMfHw7LYQykO9nuXZmgbdvuNWdnvyudPCV5IPJ/kgzl8wP7Gw23bo2DwDYIfnqaARhnamKSus1yPwpKY35z504m6Lxib5/qbTt3RkFcwrxFC01hUVFRZOElMLZdra0NmrdooQkylxcbjWf+25QpEb8IDtYcO3q0TzTnkvglarG3TzWUr0QIIXlMzPbfnz51kBwjGxMhvwuLimoOi4pq/kVwsAaky3+ZNMkM49+ze/diKG95tf7K6V++9N9zTCZTOm2Aramu6bISp0R/vCQXymCGRUU1y2NithP6flqD2ZwQFhW1A36HSoDFRqN4286dUXCqL42PLyVVh2SForDBbLaQ70LbUAplvjS6Miwqage8A20bjAZxa3t7EUKPEwilJiZVgooJkgFZSYDOSk+vK9sakG1Y7Udo3qKFJrl88Zth4TPiKqqqdlAbuRdXCD2u1Lg0Pr4UCt5jjCX7Cgoukm2TDAdoKE4u3xIWFZUJfUO7n338iYzEEcbYf96ihaZ5ixb20i/MU2SP2GFTN5jNCb8/fergQDIUhPrmEBVv3uzWnJ09SkiuxG2fANFXsze3CEpHkr87UgYCCLjwv27s55t5j1wvLnsGqCmavblF86XRlXt2714MwVtQd4WuF83FeG0l1+Yz3/5KvQMhLdsaL8bYH9zUIBmdramOBQkjX6dbS5eacPUB5+h7bvYe2CuXP2MwGsQTQkIqyYtcAwXg6amou5Rmycnp/rkwEvquB724bP/aMn7CiWHrHTLACgLctn5S9R+OpPAkDfR0H1DiEgpWZW5Sr4yMiDhGbhD6FAe7DpuRkMzETtvWuOZL45KMZGUzQLLdU4G+adzRAWr2EgnRAXrAROl3gMnMXzB/HWlvAkaSnJR0nK73Q47B1q1g2pDL9j4bjvhcjRDxIRioIeyK+jqOSCiK2dK3YqZO+xCKXwsSypOECSLuL4KDNVCpz5FThTwdU/buuevI2konT2k7uumtAIRQn/SONGFCASnwdPiNGlUFpVSFtJ6218VgNIjPnjl7AGxecXL5loGSSJwFEd8HgTAq6i6lGS/U7BkshvK7uMVrQyUSg3jzZrfVDx8ygmHW9eIsVLrjU7GPhJ0LY/5nskJRKN682c2Sk9PtqCgvGNr7r24MRybsxvdBuEsjj5x5+Hdxi9cOpLuYVHl+f/rUwav/9V+Xm7OzRwn3eWwTnqMnnzRa6o4x9n+nSL+/6Ov/u8qR9yeOG9f50ksvzcAY+69++JBzTUjVw57qIMCTe44tVGK4SnOi/hDtYEso43/xC9GM8SHFf1yZut6VFd5+rgDFlirqLqU1XKp752ptbZCjMSVCsS0B+i2ZkNxSvHmz22BKKLe++aan/NLFJOWB/Y2QZEkIcOu/BAPpGD+99vnCvGv1of0JTvv3Ba8Vk7YbAQToV05WS05ON0Qs1l+/Pg8hlDwYEoq1jxUIoQ29Bqpbt3wHo0j6SAe4varVatuRVovSr1/fw5VBzR5smBbeMHnSpHcFqUQAp9QcEiAGZTC9PKSYDcZZYRn5qTXAVPTHS3LP3W15vT/rBXifEBJSWVZe1iXUkxbAKckEAEpYMAzTWnqh5hhCaMVgMRS6ciB5AoMaJEgj2H9TRcXDhOXLLQ1mc8L+s5/KlQf2x/V3jWY/wM2K2dLNAgMXwOWSCUmwe+XyZ6quX3tjsIyy5EmJ0ONkTi9PnPiaYKD9aV1IXOwrKLiYd60+1Jk2N0wLb3hzzZpZZeVlXZB/RNhCArhEMumVAHp6RAdEIowx/vC7L76Y++24ccmuKoTO046CEEKSuQGBuQ1mc+WEkJDePKE/x5B8MqK09EJNnvLAfqclRunkKW3ymJjtCP1U4FoAAVwqmbCdhKW1Fxrg1ulgg3TylLbpHl7fweUscoM97XEN5BydtY3QAAFqwpYRYMCZCWmvaGxqiq2oqtrRn/gFVzOVF8Km/2XZbOkG+P5p9P6AqgnGcFermxBTAuqsoN4IMCBqzhMqj3XPIoQMpRdq8r77uGrNYKk8tPpTg5Cf9FHHczr9ER+4Wp0wfvx98ebNboURM3xAZB+pmwMqMZK2kXeK9Pv/ef9+nCsZiWK29C0oriUwEgEGRTJhU3kGM1LWFkwcN67zX8eNL10//9UK2hux7sQJxuv8ebeRcJkQpD+QRAZCpSEZyb8veK04fOrU9UI8jwBDwkzIU9OSk9M9XBgKQo/dm6LIGZ5wI5mSqJB482a3lMhIz+EoztMJowaKiQAjIeNJBO+NAEPGTMjN2ZydPWqgiN6ZzQL/XxI589jiGRG/pRkLKbUMhfEWY+xfdufOo5qcnG66etxA41OzanU+aWsSQIAhZyYkDCcJhY25TPfw+o5M90cylnUnTjB75fJn2BiOq1UYtoxjpGEVbEIDhQsyngQhfpnWBRBgUJgJ6W2ov359/1f3LQuHynXsyIZCCKHQmZF/jJk67UNaFbLk5HRDOoQFPd2eaLa0B12oEUEMhj2GA1IH/H2mtvYRnfMWY+zf2NQUe7m+XvzNnTuZnz/qeG6gGbEmTWmeGjxmW6hEYhDsJAIMS8mEjJRtbGqKPVtTHetoMp6hVIdsqUJ8VL2UyEjPo3V1nVxJhEjJBGBfQcHFwWAgAO9K5+iJhMLCBT4Bhq+aQ2+c4WZH4ctYnvX1PY0QQh2PHp1HCKHo0c92il98ofulwNEPyIzxtjYjqC0IIfRS4OgHuZ/8Z2AbxrvIZwb7WoKQn0SAEcdMyIrzX3z11V92/2elZKQwFDaYOG5c5/MBge3f3m3xfu7vX7VBoB7JfNbPf7Xi+g/fz/3x73/3abPcj/rzP79/8fmAwPahYBy2GAnk+xW2hgAjSjKB06/BbE6oqKra4exFtOEu1QxXwzMwEjJVgQACjBhmAgwFcmKMRLXnaWBwvYxEMLYK4CR4DGXnvTVQrEXSMcbq565fO4cQ2iMwlIFlIuRlyO09PW4JIpHASAQYuZKJLYlFf7wk1/CPr5KH4l7P085IyAx1gmojwFMhmbAxkU0VFQ+tEktag9lc+fvTpw5+e7fFW2AqrlVroA6RwEgEeKolEzpnaVl5Wdepb7+5Jag+rmEkP5ei8AIIzOQnpkIYBRvM5oSzNdWxgoHWOUZS8kOJR9KYpEcCVgR4qtUcGhLGj78PkolVxzc0mM2V+3195a7M2fG0M5LfxS1eCxJJ0hhBIhHgZ8hMEOrr8VFqte3AVCrqLqVN9/B652mOTXEFI/n18+PeFu7ZCPCzV3NYVR+rPQUuwQmqDzsTIV2/gsdGAIGZcAB9dwTSFZZfupgEm+nnyFykk6e0LZk564eJvuJPxD4+n4VKJAaBkQggqDk8VZ8ztbWPGIZpLTYaPx0/LXxG6MzIP74UOPrB5efHif/07e3dCA3tvZdBYyKRM491/cuEzYuDgz0ARwIjEUCQTJyUVMjvEULoVP2VurJLF8c8bUwFLhhCCkoSB4KNRABBMumnpAIBb17nz7t1zJnT7XX+vBuRtT1yavCY2P2+vvLxuHPGYOYIGQgpBCGE2HLYbu/pcfttR8co8jsBBBAkExdJLPTGgu+qrl97o+PRo3fLLl0cA78NVwYDDGRuQOBHEWHh7ZMnTXqXlkKWBAd7CAxEAIGZDAIYjAbxGZFbJ53dHaHHRcMQQuhsTXVsm+V+1OePOp4bSuYycdy4ToQQej4gsH26h9d38piY7WTJU4QQQj09ItzR4ScwEAEEZjKE0sofvLzutWzaxLBlnO+1s1y5/Icf//53n3N3W14nGYt08pS2nrorna6uVAjSB1QhRAihqWPGniOZiEql8u6YM6d77LJlnUICIwEEZjLMGAtkYO+e3/2QLcwcY+x/88sv37t8td5b7O1T7T579nHvb79RfPfFF3PF3j7V4hdf6G64VPcOSDO2JBqyvAaoLW2W+1F+Yt/a1MQkNXxPSxsGo0Es1K0RQGAmIw16ekTbERK9fPu2N0KPQ/rtvdJgNifA///W8qNP5ZXLDEIIQU7XZ319T8/0C/g0IjzcghBCkCeWizmoVCpvabTUHaGRXb5UgJ8X/H/6Uw1u2gs2gwAAAABJRU5ErkJggg==" alt="Tower Hamlets Education Partnership">
+      <span>Improving schools together — a shared framework for the borough\u2019s schools.</span>
+    </div>
+    <p class="foot-note">Public preview of a resource published by the Tower Hamlets Education Partnership as enabling guidance for schools, not a mandate. The full matrix is available to THEP member schools. Reading links point to the live source documents; Radar items were curated and their links verified in August 2026; they are a snapshot, not a live feed, and every item should be checked at source before acting.</p>
+  </div>
+</footer>
+
+<script>
+/* ---------------- SOURCE LIBRARY (verified live URLs) ---------------- */
+const READS = {
+  dfe_policy:{t:"DfE — Generative AI in education (policy position)",u:"https://www.gov.uk/government/publications/generative-artificial-intelligence-in-education"},
+  dfe_mod4:{t:"DfE — Use cases of generative AI in education (Module 4)",u:"https://www.gov.uk/government/publications/use-cases-of-generative-ai-in-education-module-4"},
+  dfe_safety:{t:"DfE — Generative AI: product safety standards",u:"https://www.gov.uk/government/publications/generative-ai-product-safety-standards/generative-ai-product-safety-standards"},
+  dfe_standards:{t:"DfE — Digital and technology standards for schools",u:"https://www.gov.uk/guidance/meeting-digital-and-technology-standards-in-schools-and-colleges"},
+  kcsie:{t:"DfE — Keeping Children Safe in Education",u:"https://www.gov.uk/government/publications/keeping-children-safe-in-education--2"},
+  jcq:{t:"JCQ — AI Use in Assessments",u:"https://www.jcq.org.uk/exams-office/malpractice/artificial-intelligence/"},
+  ico:{t:"ICO — Children's code guidance and resources",u:"https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/childrens-information/childrens-code-guidance-and-resources/"},
+  unesco_s:{t:"UNESCO — AI competency framework for students",u:"https://www.unesco.org/en/articles/ai-competency-framework-students"},
+  unesco_t:{t:"UNESCO — AI competency framework for teachers",u:"https://www.unesco.org/en/articles/ai-competency-framework-teachers"},
+  eef_pp:{t:"EEF — Guide to the Pupil Premium",u:"https://educationendowmentfoundation.org.uk/education-evidence/using-pupil-premium"},
+  eef_edtech:{t:"EEF — EdTech research agenda (evidence on digital technology)",u:"https://educationendowmentfoundation.org.uk/projects-and-evaluation/research-agenda-themes-priority-areas/research-agenda-theme-edtech"},
+  dfe_support:{t:"DfE — Using AI in education settings: support materials (2026\u201327)",u:"https://www.gov.uk/government/collections/using-ai-in-education-settings-support-materials"},
+  dfe_filtering:{t:"DfE — Filtering and monitoring standards for schools and colleges",u:"https://www.gov.uk/guidance/meeting-digital-and-technology-standards-in-schools-and-colleges/filtering-and-monitoring-standards-for-schools-and-colleges"},
+  ofqual_course:{t:"Ofqual — AI in coursework: resources for schools",u:"https://www.gov.uk/government/publications/ai-in-coursework-resources-for-schools"},
+  ofsted_ai:{t:"Ofsted — Ofsted\u2019s approach to AI",u:"https://www.gov.uk/government/publications/ofsteds-approach-to-ai"},
+  teachai:{t:"TeachAI — AI guidance for schools toolkit",u:"https://www.teachai.org/toolkit"}
+};
+
+/* ---------------- PRINCIPLES & DOMAINS ---------------- */
+const PRINCIPLES = [
+  {k:"safe", name:"Safety before adoption", short:"Safety", blurb:"No tool enters a setting before it has been assessed. This is the precondition every other value depends on — which is why it sits first, and why every intersection with it is marked."},
+  {k:"rel",  name:"Human relationships and interaction", short:"Relationships", blurb:"AI serves teaching and learning; it never replaces the relationship or the professional decision."},
+  {k:"eq",   name:"Equity is the standard", short:"Equity", blurb:""},
+  {k:"think",name:"Protect thinking", short:"Thinking", blurb:"We preserve productive friction — the desirable difficulty learning requires. Useful is not the same as safe."},
+  {k:"trans",name:"Transparency and academic honesty", short:"Transparency", blurb:""},
+  {k:"dig",  name:"Dignity & agency", short:"Dignity", blurb:""},
+  {k:"inc",  name:"Inclusive by design", short:"Inclusion", blurb:""}
+];
+const DOMAINS = ["Curriculum","Teaching","Safeguarding","Academic outcomes","Culture","Inequality"];
+
+/* ---- preview build: three values open, four available to member schools ---- */
+const OPEN = ["safe","rel","think"];
+const MEMBER_URL = "https://thep.org.uk/";
+</script>
+<script>
+/* ---------------- MATRIX CELLS: questions → practice → TH grounding → reading ---------------- */
+/* c = headline commitment · q = reflective questions · pts = referenced practical points
+   th = how it lands on the ground in Tower Hamlets · read = key into READS */
+const CELLS = {
+
+  "safe-Curriculum":{c:"Age-appropriate tools only",
+    q:["Do we actually know the minimum-age terms of every AI tool our pupils are asked or encouraged to use?",
+       "How do the AI tools used by a Year 7 differ from those used by a Year 12? How do we ensure the AI tools used in our school are appropriate for each learning phase?",
+       "Who is responsible for safeguarding and checking age‑appropriateness when a teacher discovers a new tool on Sunday night and plans to use it on Monday, and does our policy explicitly require this oversight?"],
+    pts:["<b>Check the terms first.</b> Many popular AI tools are 13+ or 18+ in their own terms of service; DfE guidance is explicit that pupil access needs particular caution.",
+         "<b>Grade the latitude.</b> Little or no independent AI use for the youngest, structured and supervised use in the middle, widening critical latitude for the oldest — written down per key stage.",
+         "<b>Route new tools through a gate.</b> A lightweight request form to a named lead beats discovering a classroom of Year 8s on an 18+ platform at parents' evening."],
+    th:"With large families common and devices shared across siblings, an older child's school-sanctioned tool becomes a younger child's bedtime toy within the same flat. Age-appropriateness in this borough can't stop at the classroom door — parent guidance in community languages about which tools carry which age limits is part of the same commitment.",
+    read:"dfe_policy"},
+
+  "safe-Teaching":{c:"No pupil personal data in open tools",
+    q:["Would every member of staff — including supply teachers, trainees and TAs — know that pasting a pupil's report into a free chatbot is a data breach?",
+       "Where is the line between 'a Year 9 pupil struggling with fractions' and identifiable data — and who has explained it?",
+       "When did we last check what staff actually do using AI, rather than what our policy says they should?"],
+    pts:["<b>Make the rule absolute and teachable.</b> Pupil personal data never enters open AI tools — a hard line is learnable; a nuanced one is ignorable.",
+         "<b>Explain the why.</b> ICO guidance treats children's data as meriting special protection; free tools may retain, review and train on inputs — staff who understand the mechanism follow the rule.",
+         "<b>Offer the safe alternative.</b> The rule holds only if staff have an approved, enterprise-controlled route for the legitimate tasks they were trying to do. i.e They are using Gemini on their school's Google ecosystem (but still requires checking T's and C's)."],
+    th:"The staff most tempted to shortcut are the most overloaded — and inner-London workloads are relentless. Pupil data here is also unusually sensitive in aggregate: immigration status anxieties, safeguarding histories, EHCP detail. A borough-negotiated safe tool with proper data terms costs less than one school's ICO incident, financially and in community trust that takes years to build.",
+    read:"ico"},
+
+  "safe-Safeguarding":{c:"KCSIE filtering & monitoring extended to GenAI",
+    q:["Would our current filtering catch a pupil generating harmful imagery, or only a pupil searching for it?",
+       "When we last reviewed filtering and monitoring, did generative AI appear in the review at all?",
+       "Does our online-safety policy name deepfakes and AI-generated content, or rely on 2019 categories? Do our SG Team know that AI generated pornographic images of young people should be reported to the police?"],
+    pts:["<b>Read the duties as covering GenAI.</b> KCSIE's filtering, monitoring and online-safety expectations extend to generative tools — policies should say so explicitly rather than by implication.",
+         "<b>Review annually against the standards.</b> DfE filtering and monitoring standards expect at least annual review reflecting how the school's technology use has changed — GenAI is now that change.",
+         "<b>Prepare for generation, not just access.</b> The novel risk is pupils creating harmful content — synthetic images of peers, generated abuse material — which monitoring built for search patterns can miss."],
+    th:"Incidents involving AI-generated imagery of pupils have hit UK schools with community fallout far beyond the individuals involved — and in a borough of tightly connected school communities, reputational and safeguarding shockwaves cross catchments fast. Shared THEP incident protocols and a common review calendar give small schools the same defensive depth as large ones.",
+    read:"kcsie"},
+
+  "safe-Academic outcomes":{c:"Approved-tool list for assessment contexts",
+    q:["If an awarding body asked tomorrow which AI tools our candidates may use in NEA, could we hand them a list?",
+       "Who owns that list, how does a tool get on it, and when was it last reviewed?",
+       "Are pupils aware of the rules around Generative AI, or do they only learn them when accused of misconduct? Furthermore, are we explicitly teaching pupils when and how to cite GenAI in their work?"],
+    pts:["<b>Maintain a named list.</b> In assessment contexts only vetted, named tools are permitted — the list, its owner and its review date are what makes the malpractice policy operable.",
+         "<b>Tie it to JCQ requirements.</b> Centres must define their approach to preventing and identifying AI misuse per subject; an approved-tool list plus disclosure norms is the defensible core of that approach.",
+         "<b>Publish it to pupils and parents.</b> Integrity rules pupils learn only at the point of accusation are traps, not standards."],
+    th:"Exam outcomes carry exceptional weight for families here, and malpractice processes are terrifying for pupils who often can't call on confident, system-savvy advocates at home. A clear, published, taught approved-tool list protects them twice over: it prevents accidental misuse, and it means any genuine case rests on rules everyone demonstrably knew.",
+    read:"jcq"},
+
+  "safe-Culture":{c:"Norms modelled by leaders",
+    q:["Do staff know when their own leaders use AI — or do leaders quietly use tools the school hasn't approved?",
+       "If SLT drafted this term's parent letter with AI, would we say so in the staffroom?",
+       "When should staff disclose use of AI in their work with colleagues and students? When does use of AI undermine our credibility as leaders?"],
+    pts:["<b>Lead by visible example.</b> Leaders using AI within the rules — and saying so — sets more culture than any memo; hypocrisy detected once undoes a year of policy.",
+         "<b>Use DfE leadership materials as the mirror.</b> The leadership toolkit frames AI governance as a leadership behaviour, not a compliance document.",
+         "<b>Make disclosure cheap.</b> If admitting AI use invites judgement, staff will stop admitting; normalise 'I drafted this with AI and checked it' as ordinary professional speech."],
+    th:"School cultures in high-pressure boroughs run on watchfulness — staff notice fast when the rules are for other people. Heads here also model to a wider audience than their staffroom: THEP's collegial structure means one head's honest, disciplined AI practice becomes another school's reference point within a term. Visible integrity compounds across the partnership.",
+    read:"dfe_policy"},
+
+  "safe-Inequality":{c:"Collective vetting protects under-resourced schools",
+    q:["Which schools have anyone with time and expertise to vet an AI tool properly — and which are guessing?",
+       "How many times this year has the same tool been separately assessed by different Tower Hamlets schools?",
+       "What would a shared DPIA (Data Protection Impact Assessment) library save us, in hours and in risk?"],
+    pts:["<b>Vet once, use many times.</b> A borough-level shared register of assessed tools — with DPIAs, age-terms checks and safety-standards review — turns duplicated labour into common infrastructure.",
+         "<b>Anchor to the DfE product safety standards.</b> They give a common yardstick so every school's vetting asks the same questions of suppliers.",
+         "<b>Protect the smallest first.</b> The schools least able to vet alone — small primaries, PRUs, special schools — gain most from collective diligence; design the register for their needs, not just the big secondaries'."],
+    th:"A large secondary may have a network manager, a DPO contract and a deputy with digital in their title; a two-form-entry primary in Poplar has none of those and the same legal duties. Collective vetting is the partnership's clearest equity mechanism for schools themselves — the borough's diligence becomes every school's diligence, whatever their size or budget.",
+    read:"dfe_safety"},
+
+  "rel-Curriculum":{c:"AI literacy taught by teachers, not outsourced",
+    q:["Who in our school actually teaches pupils what AI is — and would they say they feel qualified to?",
+       "If we bought an off-the-shelf AI literacy product tomorrow, what would our own teachers stop doing as a result?",
+       "Which subjects currently touch AI at all, and is that by design or by accident of who's interested?"],
+    pts:["<b>Anchor the curriculum in a teacher-led spine.</b> UNESCO's student framework is deliberately tool-agnostic — competencies from a human-centred mindset through to system design — which makes it a durable scaffold a department can own rather than a product subscription.",
+         "<b>Map before you buy.</b> Audit where AI already appears across Computing, PSHE, RS and English before commissioning anything new; most schools find more coverage than they expected, held by two or three enthusiasts.",
+         "<b>Name the risk of outsourcing.</b> A platform can deliver content, but only a teacher who knows the class can frame when to trust a model's output — the framing is the literacy."],
+    th:"In a borough where many pupils' first sustained encounter with AI happens at school, the person doing the framing matters more, not less. Staff turnover and stretched CPD time make an external platform tempting — but a subscription that walks out the door when budgets tighten leaves nothing behind. A teacher-held curriculum survives the renewal cycle.",
+    read:"unesco_s"},
+
+  "rel-Teaching":{c:"AI cuts workload to free relational time",
+    q:["If AI saved every teacher three hours a week, where would those hours actually go — and who decides?",
+       "Are we adopting AI to improve teaching, or to mindlessly cut teacher workload? How can AI be used to improve classroom interactions if it's improving planning efficiency?",
+       "What would our ECTs say the planning support they need most is — and is AI actually it?"],
+    pts:["<b>Make the dividend explicit.</b> The DfE's own materials position AI first as a workload tool — planning, adapting, drafting, feedback. Write down where the saved time is meant to land (tutoring, phone calls home, subject planning) or it will evaporate into more tasks.",
+         "<b>Protect checking time.</b> DfE guidance is clear that staff must critically review AI outputs; leaders should assume ECTs and non-specialists need more support to check outputs than to generate them.",
+         "<b>Watch the workload paradox.</b> EEF's EdTech evidence base is mixed — tools that promise time savings can quietly add preparation, verification and admin."],
+    th:"Recruitment and retention pressures in inner London make the workload case for AI genuinely compelling — and genuinely risky. In a school where staff already stretch across intervention groups, EAL scaffolding and pastoral load, the saved hour must be visibly returned to teachers, not silently absorbed. Making that explicit is a leadership decision, not a tool feature.",
+    read:"dfe_mod4"},
+
+  "rel-Safeguarding":{c:"DSL owns AI-related risk",
+    q:["Could our DSL explain, today, how generative AI changes the risks our pupils face online?",
+       "How does the pastoral support we provide to a pupil who has experienced abuse through deepfakes or generative AI differ from the support we offer for abuse or bullying in real life?",
+       "Are we explicitly teaching pupils about the harms and the law related to the misuse of generative AI? Where does AI sit on our safeguarding training calendar — and is it there at all?"],
+    pts:["<b>Name the owner.</b> KCSIE places filtering, monitoring and online-safety duties with safeguarding leadership; AI risk should be explicit in the DSL's brief, not diffused across IT and SLT.",
+         "<b>Update the incident playbook.</b> Deepfakes and AI-generated imagery need a named route: who preserves evidence, who contacts families, when police are involved.",
+         "<b>Train for recognition, not just rules.</b> Staff need to know what AI-enabled harm looks like — synthetic images, chatbot over-disclosure — before policy language means anything."],
+    th:"Dense social media ecosystems around East London schools mean AI-generated content spreads through year groups in hours, often across sibling and community networks that span several schools. A DSL who owns this risk — and who can pick up the phone to counterparts in neighbouring THEP schools — turns an isolated incident into shared intelligence.",
+    read:"kcsie"},
+
+  "rel-Academic outcomes":{c:"Teacher judgement is the keystone of integrity",
+    q:["When a teacher suspects AI misuse, what do they actually do next — and would every department give the same answer?",
+       "Do our teachers see enough of each pupil's unaided work to know what their authentic voice sounds like? Is this different at post 16?",
+       "How can we measure the impact of AI tools on outcomes at GCSE and A-level? Are the AI tools we have used having an impact on outcomes?"],
+    pts:["<b>Build the baseline.</b> JCQ guidance leans on teachers knowing the standard a student is working at — supervised, in-class writing early in a course is what makes later judgement defensible.",
+         "<b>Judgement over detection.</b> JCQ lists indicators of misuse but no detector is determinative; the professional call of a teacher who knows the pupil's usual work is what an awarding body will ask about.",
+         "<b>Record the reasoning.</b> Where AI use affects a mark, JCQ expects the decision and its grounds to be clearly recorded — protect staff by making that recording routine, not exceptional."],
+    th:"For pupils whose grades carry a family's aspirations — first-in-family sixth form and university routes are common across the borough — a wrong integrity call in either direction is devastating. Teacher judgement rooted in genuinely knowing each pupil's work is both the fairest instrument and the one that stands up to appeal.",
+    read:"jcq"},
+
+  "rel-Culture":{c:"Shared language across staff",
+    q:["If we asked ten colleagues what our school's position on AI is, how many different answers would we get?",
+       "Do support staff, cover supervisors and lunchtime staff share the vocabulary — or just the teachers who attended the INSET?",
+       "What's the shortest version of our AI values a Year 7 could repeat back?"],
+    pts:["<b>Compress the framework.</b> A memorable value set (the SPARK pattern — a handful of words every adult can carry) does more cultural work than a twelve-page policy nobody rereads.",
+         "<b>Put it where talk happens.</b> Assemblies, staff briefings, parent coffee mornings — shared language spreads through repetition in ordinary settings, not documents.",
+         "<b>Let TeachAI's toolkit do the drafting.</b> Its guidance templates are designed to be adapted; the cultural act is the adaptation conversation itself."],
+    th:"Tower Hamlets schools run on a wide staff ecology — teachers, learning support assistants, mentors, home-school liaison workers, many drawn from the local community. A shared AI vocabulary that reaches all of them, not just teaching staff, is what makes the culture coherent when a pupil asks an LSA in the corridor whether they're allowed to use ChatGPT.",
+    read:"teachai"},
+
+  "rel-Inequality":{c:"Human support never replaced by a chatbot",
+    q:["Is there anywhere in our provision — homework help, wellbeing, careers — where a struggling child's first responder is now software and not people? Where is this right and where is this wrong?",
+       "If budget pressure forced a choice between a mentoring post and an AI platform, how would we decide?",
+       "Do pupils know the difference between AI help and human help and do they know they're entitled to the latter?"],
+    pts:["<b>Draw the line in policy.</b> Pastoral care, SEND support and family contact stay human; AI may assist the adult but never substitutes for one. DfE materials flag pupil-facing wellbeing tools as a particular risk area.",
+         "<b>Audit the quiet substitutions.</b> Replacement rarely arrives as a decision — it arrives as a homework platform's chatbot quietly becoming the only help available at 8pm.",
+         "<b>Check disclosure routes.</b> A child who discloses to a chatbot must still reach a person; DfE product safety standards expect tools to alert safeguarding leads, but the school's own routes matter more."],
+    th:"In a borough with some of the highest child poverty in the country, school staff are often the most stable adults in a child's week. The relational infrastructure — mentors, pastoral teams, home-school workers who speak families' languages — is precisely what a cost-cutting AI substitution would dismantle first, and precisely what disadvantaged pupils can least afford to lose.",
+    read:"dfe_safety"},
+
+  "think-Curriculum":{c:"Ethics & critical evaluation woven across subjects",
+    q:["If we removed the word 'AI' from our curriculum map, where would pupils still be learning to question sources, bias and authority?",
+       "Is AI ethics a unit somebody teaches, or a habit every subject reinforces?",
+       "Which department would be most surprised to be told it has a role in AI literacy?"],
+    pts:["<b>Weave, don't bolt.</b> Bias in history sources, reliability in science, authorship in English, fairness in RS and PSHE — critical evaluation of AI extends dispositions subjects already teach.",
+         "<b>Use UNESCO's ethics dimension as the checklist.</b> Its 'Ethics of AI' strand gives departments a shared reference without prescribing lessons.",
+         "<b>Beware the standalone unit trap.</b> A one-off Year 8 module signals that critical thinking about AI is a topic that ends, rather than a stance that persists."],
+    th:"Curriculum time in a results-accountable school is the scarcest resource there is, and a bolted-on AI unit competes with everything. Weaving costs less time and lands better — a Tower Hamlets humanities classroom discussing whose stories training data leaves out is often richer ground for AI ethics than any Computing lesson, because pupils recognise themselves in the question.",
+    read:"unesco_s"},
+
+  "think-Teaching":{c:"“Useful vs safe” framing in planning",
+    q:["When a colleague shows off a tool that saves an hour, do we ever ask what the pupils lose in that hour?",
+       "Which parts of our subjects require struggle that AI now makes optional, have we named them and are we addressing this?",
+       "Do our planning conversations distinguish AI that removes obstacles to learning from AI that removes the learning?"],
+    pts:["<b>Adopt the two-question test.</b> Not just 'does this help?' but 'is this safe for learning?' — a tool can be genuinely useful and still wrong for the lesson because the difficulty was the point.",
+         "<b>Locate desirable difficulty explicitly.</b> Departments should be able to say which tasks exist to produce struggle (retrieval, drafting, problem-solving) and shield them.",
+         "<b>Check outputs and pedagogy together.</b> DfE guidance stresses reviewing AI output for accuracy; the deeper review is whether the output short-circuits the thinking the task was built to cause."],
+    th:"The pressure to accept anything that eases workload is enormous in a stretched school — and the pupils most at risk from friction-free learning are those without home scaffolding to rebuild it. Protecting productive struggle here is an equity act: the child who never has to draft, redraft and fail safely at school may never get to do it anywhere.",
+    read:"dfe_mod4"},
+
+  "think-Safeguarding":{c:"Guard against over-reliance for emotional & health support",
+    q:["Do we know whether any of our pupils are using chatbots for emotional support, health questions or advice at night?",
+       "What would a pupil in our school say is easier: telling an adult something hard, or telling an app?",
+       "Where in PSHE or pastoral programmes do we actually talk about AI companionship and advice-seeking?"],
+    pts:["<b>Name it as a risk category.</b> Emotional over-reliance on AI sits alongside content risks in modern safeguarding thinking; DfE product safety standards specifically flag tools handling mental-health disclosures.",
+         "<b>Build the PSHE strand.</b> Age-appropriate teaching about what chatbots are (and aren't), why they feel easy to talk to, and where real help lives.",
+         "<b>Keep human routes visible and warm.</b> The counter to a 2am chatbot isn't a ban — it's pupils knowing exactly which adults they can reach and trusting the reception they'll get."],
+    th:"Long CAMHS waits and thin community mental-health provision mean East London young people fill gaps with whatever responds — and chatbots always respond. Pupils carrying caring responsibilities, housing insecurity or family stress at levels common in this borough are exactly those most likely to lean on a machine that never seems tired of them. Pastoral systems need to know this pattern exists before they can meet it.",
+    read:"dfe_safety"},
+
+  "think-Academic outcomes":{c:"AI-stripped assessment of raw capability",
+    q:["For each subject and year group, could we point to one recent piece of work we're certain was unaided?",
+       "If all take-home work became AI-assisted overnight, how would we re-think independent study across the school?",
+       "How can we make our students use of AI a cognitive extension rather than a cognitive offload?"],
+    pts:["<b>One clean artefact per judgement.</b> At least one assessment of capability per cycle rests on AI-stripped conditions — in-class writing, viva, live performance — so the school knows what each pupil can actually do.",
+         "<b>Align with JCQ's supervision logic.</b> Exam-condition work early and often is exactly what JCQ recommends so teachers know the standard a student genuinely works at.",
+         "<b>Frame it as entitlement.</b> Pupils deserve the chance to prove capability in a way nobody can question — that framing lands better than surveillance."],
+    th:"For pupils heading into interviews, apprenticeships and universities that increasingly test in person, the ability to think unassisted is the currency — and pupils without home study space or quiet often produce their best unaided work at school anyway. Supervised assessment, framed as protected time and proof of skill, fits the rhythms of this borough's pupils better than take-home trust exercises.",
+    read:"jcq"},
+
+  "think-Culture":{c:"Productive struggle valued openly",
+    q:["When did a leader in our school last say publicly that finding something hard is the point?",
+       "Does our marking and praise reward polished products or visible thinking?",
+       "What do pupils believe we want: the right answer fast, or the honest attempt slow?"],
+    pts:["<b>Say it from the front.</b> Assemblies, parents' evenings, reports — the school's public voice should defend difficulty before a tool-smoothed culture makes the case impossible.",
+         "<b>Show teacher struggle too.</b> Staff modelling drafts, mistakes and revision normalises effort; UNESCO's teacher framework puts reflective, critical use above fluent use.",
+         "<b>Audit reward systems.</b> If merits, displays and grades only celebrate finished polish, the incentive to shortcut is structural, not moral."],
+    th:"Many families here hold fierce aspirations built on the belief that hard work at school changes lives — a cultural asset most schools would envy. Naming productive struggle openly honours that belief and enlists parents as allies: the message that 'we could let machines make this easy, and we choose not to, because your child's mind is the point' resonates deeply in this community.",
+    read:"unesco_t"},
+
+  "think-Inequality":{c:"Critical-use literacy, not just access",
+    q:["If we gave every pupil a laptop and a chatbot tomorrow, would our disadvantage gap close or just change shape?",
+       "Which pupils in our school use AI most — and are they using it in ways that build capability or replace it?",
+       "Is our digital-inclusion work counting devices, or measuring judgement?"],
+    pts:["<b>Access is the floor, not the goal.</b> EEF evidence consistently shows technology's impact depends on how it's used pedagogically — hardware programmes without critical-use teaching underdeliver.",
+         "<b>Watch for dependence as the new gap.</b> Advantaged pupils tend to be taught to interrogate tools; without deliberate teaching, disadvantaged pupils can be left with access plus dependence — a worse position than no access.",
+         "<b>Measure judgement, not logins.</b> Usage dashboards flatter; what matters is whether pupils can say when the tool is wrong."],
+    th:"Device schemes and connectivity funds have narrowed the borough's hardware gap since the pandemic — the harder gap now is interpretive. A pupil who accepts whatever the model says has been given a new dependency, not a new capability. The equity work here is teaching the scepticism that better-resourced pupils absorb at home, and that no device grant can ship.",
+    read:"eef_edtech"}
+};
+
+/* ---------------- BUILD MATRIX ---------------- */
+const domRow = document.getElementById('domRow');
+DOMAINS.forEach(dom=>{
+  const th=document.createElement('th');
+  th.className='dom';th.dataset.dom=dom;th.scope='col';
+  th.innerHTML=`<div class="dlab">${dom}</div>`;
+  th.onclick=()=>showDomain(dom);
+  domRow.appendChild(th);
+});
+const body=document.getElementById('mtxBody');
+PRINCIPLES.forEach(p=>{
+  const tr=document.createElement('tr');tr.dataset.prin=p.k;
+  if(!OPEN.includes(p.k))tr.classList.add('locked');
+  const th=document.createElement('th');th.className='prin';th.scope='row';
+  th.innerHTML=`<div class="plab">${p.name}</div>`;
+  th.onclick=()=>showPrinciple(p.k);
+  tr.appendChild(th);
+  DOMAINS.forEach(dom=>{
+    const td=document.createElement('td');td.className='cell';
+    td.dataset.prin=p.k;td.dataset.dom=dom;
+    const b=document.createElement('button');
+    b.setAttribute('aria-label',`${p.name} in ${dom}`);
+    b.innerHTML=OPEN.includes(p.k)?'<span class="dot"></span>':'<span class="lk"></span>';
+    b.onclick=()=>showCell(p.k,dom);
+    td.appendChild(b);tr.appendChild(td);
+  });
+  body.appendChild(tr);
+});
+
+/* ---------------- PANEL RENDERERS ---------------- */
+const panel=document.getElementById('panel');
+function clearHi(){
+  document.querySelectorAll('.cell').forEach(c=>c.classList.remove('active','rowon','colon'));
+  document.querySelectorAll('tr').forEach(r=>r.classList.remove('rowon'));
+  document.querySelectorAll('th.dom,th.prin').forEach(t=>t.classList.remove('on'));
+}
+function pName(k){return PRINCIPLES.find(p=>p.k===k).name}
+function isOpen(k){return OPEN.includes(k)}
+function gateHTML(pk,dom){
+  const bits=[];
+  if(pk)bits.push(`<span class="tag p">${pName(pk)}</span>`);
+  if(dom)bits.push(`<span class="tag d">${dom}</span>`);
+  bits.push('<span class="tag lock">Members only</span>');
+  return `
+    <div class="tags">${bits.join('')}</div>
+    <div class="gate">
+      <div class="lkbig" aria-hidden="true"></div>
+      <p class="lead"><b>THEP school membership required for full access.</b></p>
+      <p>This preview opens three of the seven values in full. The remaining four \u2014 Equity is the standard, Transparency and academic honesty, Dignity &amp; agency, and Inclusive by design \u2014 are available to Tower Hamlets Education Partnership member schools.</p>
+      <p>Each locked intersection carries the same structure as those you can see here: the questions a leadership team should sit with, referenced practical points, and a paragraph on how it lands on the ground in this borough.</p>
+      <a class="cta" href="${MEMBER_URL}" target="_blank" rel="noopener">Find out about THEP membership \u2197</a>
+    </div>`;
+}
+
+function showCell(pk,dom){
+  clearHi();
+  document.querySelectorAll(`.cell[data-prin="${pk}"]`).forEach(c=>c.classList.add('rowon'));
+  document.querySelectorAll(`.cell[data-dom="${dom}"]`).forEach(c=>c.classList.add('colon'));
+  const cell=document.querySelector(`.cell[data-prin="${pk}"][data-dom="${dom}"]`);
+  cell.classList.remove('rowon','colon');cell.classList.add('active');
+  if(!isOpen(pk)){panel.innerHTML=gateHTML(pk,dom);panel.scrollTop=0;return}
+  const data=CELLS[`${pk}-${dom}`];
+  const read=READS[data.read];
+  panel.innerHTML=`
+    <div class="tags"><span class="tag p${pk==='safe'?' critical':''}">${pName(pk)}</span><span class="tag d">${dom}</span></div>
+    <h3>${data.c}</h3>
+    <div class="sublab">Ask yourselves</div>
+    <ol class="qs">${data.q.map(q=>`<li>${q}</li>`).join('')}</ol>
+    <div class="sublab">To consider</div>
+    <ul class="pts">${data.pts.map(pt=>`<li>${pt}</li>`).join('')}</ul>
+    <div class="sublab">On the ground in Tower Hamlets</div>
+    <div class="thbox">${data.th}</div>
+    <div class="go"><span class="arrow">\u2197</span><span><a href="${read.u}" target="_blank" rel="noopener">${read.t}</a><span class="src-note">Verify at source — the Compass signposts, it does not replace the guidance.</span></span></div>`;
+  panel.scrollTop=0;
+}
+function showPrinciple(pk){
+  clearHi();
+  document.querySelectorAll(`tr[data-prin="${pk}"] th.prin`).forEach(t=>t.classList.add('on'));
+  const p=PRINCIPLES.find(x=>x.k===pk);
+  if(!isOpen(pk)){panel.innerHTML=gateHTML(pk,null);panel.scrollTop=0;return}
+  let li=DOMAINS.map(dom=>`<li data-pk="${pk}" data-dom="${dom}"><span class="k">${dom}</span><span>${CELLS[`${pk}-${dom}`].c}</span></li>`).join('');
+  panel.innerHTML=`
+    <div class="tags"><span class="tag p${pk==='safe'?' critical':''}">${pk==='safe'?'Value · precondition':'Value'}</span></div>
+    <h3>${p.name}</h3>
+    <p class="commit">${p.blurb}</p>
+    <ul class="rowlist">${li}</ul>
+    <p class="empty" style="margin-top:14px">Select any line to open its questions.</p>`;
+  wireRowList();
+  panel.scrollTop=0;
+}
+function showDomain(dom){
+  clearHi();
+  document.querySelectorAll(`th.dom[data-dom="${dom}"]`).forEach(t=>t.classList.add('on'));
+  let li=PRINCIPLES.map(p=>isOpen(p.k)
+    ? `<li data-pk="${p.k}" data-dom="${dom}"><span class="k">${p.short}</span><span>${CELLS[`${p.k}-${dom}`].c}</span></li>`
+    : `<li class="lockrow"><span class="k">${p.short}</span><span>Members only \u2014 THEP school membership required</span></li>`).join('');
+  panel.innerHTML=`
+    <div class="tags"><span class="tag d">Domain</span></div>
+    <h3>${dom}</h3>
+    <p class="commit">How all seven values land in ${dom.toLowerCase()}:</p>
+    <ul class="rowlist">${li}</ul>
+    <p class="empty" style="margin-top:14px">Select any line to open its questions.</p>`;
+  wireRowList();
+  panel.scrollTop=0;
+}
+function wireRowList(){
+  panel.querySelectorAll('.rowlist li').forEach(li=>{
+    if(li.classList.contains('lockrow'))return;
+    li.onclick=()=>showCell(li.dataset.pk,li.dataset.dom);
+  });
+}
+
+/* ---------------- RADAR FEED DATA (sample) ---------------- */
+const FEED=[
+  {src:"DfE",date:"19 Jan 2026",urg:"action",title:"Product safety standards add cognitive, emotional and mental-health expectations",
+   doms:["Teaching","Safeguarding","Academic outcomes"],url:READS.dfe_safety.u,
+   sum:"The renamed Generative AI: product safety standards now set expectations well beyond filtering. Learner-facing tools should not hand over full answers by default, should track and report cognitive offloading, should avoid anthropomorphic design and engagement-extending behaviour, and should alert the DSL to distress or signs of emotional dependence.",
+   lens:"This is the single most useful vetting instrument published so far, because it turns vague unease into specific supplier questions. Ask any pupil-facing tool: does it withhold full solutions by default, does it report offloading to teachers, does it route disclosures to our DSL? A tool that fails those is not a borderline call. For THEP, one shared supplier questionnaire built from these standards saves every school writing its own.",
+   reviewed:true},
+  {src:"DfE",date:"19 May 2026",urg:"action",title:"Staff training modules refreshed for 2026\u201327, with new inclusion and operations content",
+   doms:["Teaching","Curriculum"],url:READS.dfe_support.u,
+   sum:"The four staff modules and leaders\u2019 pack were updated for the new academic year. Reporting on the refresh points to new material on inclusion and accessibility, business and operations, and administrative tasks, alongside expanded safeguarding content. Leaders are cautioned to be careful with pupil data and not to let AI draft statutory documents such as EHCPs.",
+   lens:"Free, quality-assured and current from September, which makes it the obvious CPD spine. Route each school\u2019s AI lead through the modules first, then layer local case studies. The new inclusion material is worth pulling out separately for SENDCos and EAL leads, since it speaks directly to the adaptive-teaching uses that matter most in our classrooms.",
+   reviewed:true},
+  {src:"Ofqual / DfE",date:"9 Mar 2026",urg:"action",title:"Coursework integrity pack published after Chief Regulator writes to exam boards",
+   doms:["Academic outcomes"],url:READS.ofqual_course.u,
+   sum:"A senior leadership briefing pack and a teacher lesson plan were released to help schools set a whole-school position on AI in assessed work. The pack reports that 2025 penalties included 1,125 cases where students lost a whole GCSE or A level, and close to 2,000 cases where marks were deducted.",
+   lens:"Those figures are the ones to put in front of Year 11 and 13 parents, in community languages, before coursework season rather than after. The pack\u2019s first instruction \u2014 ask your exams officer which qualifications carry NEA \u2014 is a half-hour job that most schools have not done. Pair it with a published approved-tool list so any case rests on rules pupils demonstrably knew.",
+   reviewed:true},
+  {src:"DfE",date:"2026",urg:"action",title:"Filtering and monitoring review must now consider generative AI use",
+   doms:["Safeguarding"],url:READS.dfe_filtering.u,
+   sum:"The standards continue to require review of filtering and monitoring at least once every academic year, now clarified so that the review considers how any generative AI tools are used in the setting. Conventional DNS and URL blocklists cannot see risk in content a model generates on the page.",
+   lens:"A concrete September action with a paper trail attached: complete the annual review, record it, and make sure generative AI appears in the write-up. The blocklist point matters locally \u2014 monitoring built to catch searching will not catch a pupil generating imagery of a classmate, which is the incident pattern that travels fastest through our school communities.",
+   reviewed:true},
+  {src:"Legislation",date:"2026",urg:"aware",title:"Crime and Policing Act 2026 criminalises AI nudification tools",
+   doms:["Safeguarding","Culture"],url:READS.kcsie.u,
+   sum:"The Act has received Royal Assent, making it an offence to make, adapt, supply or offer to supply AI-powered nudification tools. Commencement dates and the treatment of browser-based services are worth checking before briefing staff.",
+   lens:"Useful for two conversations. With the safeguarding team, it confirms that AI-generated indecent imagery of pupils is a police matter, not an internal behaviour issue. With pupils, in assemblies and PSHE, it converts an abstract warning into a clear statement that this is now criminal \u2014 which lands better than a policy line.",
+   reviewed:false},
+  {src:"Ofsted",date:"Oct 2025",urg:"aware",title:"No standalone AI judgement, but impact is fair game on inspection",
+   doms:["Culture","Teaching"],url:READS.ofsted_ai.u,
+   sum:"Ofsted\u2019s guidance sets out broad principles rather than a framework: AI is not inspected as a standalone element, and inspectors are not asked to grade tools or usage. Where AI affects education and safeguarding, its impact will be considered as any other approach would be. Ofsted states it does not yet have the evidence to define good use.",
+   lens:"Read this as pressure release, not permission to drift. Nobody needs an AI strategy for inspection. What a school does need is to be able to say what it uses, why, and what difference it has made \u2014 which is exactly what working through this matrix produces. The commonly quoted line that the biggest risk is doing nothing is commentary on Ofsted\u2019s position rather than a quotation from it.",
+   reviewed:false},
+  {src:"ICO",date:"Standing",urg:"aware",title:"Children\u2019s code and DPIA duties still govern every pupil-facing tool",
+   doms:["Safeguarding","Teaching"],url:READS.ico.u,
+   sum:"A DPIA is required where processing is likely to result in high risk. New or innovative technology, profiling children, and special-category data each raise that likelihood, and AI tools in schools frequently involve more than one. Tools likely to be accessed by children engage the Children\u2019s code, under which the best interests of the child are a primary consideration.",
+   lens:"The clearest argument for doing this once across the partnership rather than seventeen times badly. A shared DPIA template and a common register of assessed tools protects the schools without a DPO contract or a spare deputy \u2014 which is the real equity gap between settings in this borough.",
+   reviewed:true},
+  {src:"UNESCO",date:"Standing",urg:"aware",title:"AI competency frameworks remain the tool-agnostic curriculum spine",
+   doms:["Curriculum"],url:READS.unesco_s.u,
+   sum:"The student framework progresses from a human-centred mindset through AI ethics, techniques and system design, structured as Understand, Apply and Create. A parallel framework sets out competencies for teachers.",
+   lens:"Because it is tool-agnostic it will not date the way a product-based scheme does, which makes it the safest thing to anchor key-stage expectations to. Use the Create level deliberately: it is the difference between teaching our pupils to prompt the technology and teaching them to build it, a mile from a global tech corridor.",
+   reviewed:true}
+];
+
+const feed=document.getElementById('feed');
+function renderFeed(filter){
+  feed.innerHTML='';
+  FEED.filter(it=>{
+    if(filter==='all')return true;
+    if(filter==='action')return it.urg==='action';
+    return it.doms.includes(filter);
+  }).forEach(it=>{
+    const el=document.createElement('article');el.className='item';
+    const rev=it.reviewed
+      ? '<span class="badge">TH lens · reviewed</span>'
+      : '<span class="badge unrev">TH lens · not yet reviewed</span>';
+    el.innerHTML=`
+      <div class="meta">
+        <span class="src">${it.src}</span>
+        <span class="urg ${it.urg}">${it.urg==='action'?'Action needed':'Awareness'}</span>
+        <span class="date">${it.date}</span>
+      </div>
+      <h3>${it.title}</h3>
+      <p class="summary">${it.sum}</p>
+      <div class="domlist">${it.doms.map(d=>`<span>${d}</span>`).join('')}</div>
+      <div class="lens">
+        <button class="lens-btn" aria-expanded="false">Through a Tower Hamlets lens <span class="chev">\u203A</span></button>
+        <div class="lens-body"><div class="lens-inner">
+          <div class="ai-flag">AI-drafted ${rev}</div>
+          <p>${it.lens}</p>
+          <div class="verify">\u2934 <a href="${it.url}" target="_blank" rel="noopener">Read the source</a> — verify before acting</div>
+        </div></div>
+      </div>`;
+    const btn=el.querySelector('.lens-btn'),lens=el.querySelector('.lens');
+    btn.onclick=()=>{const open=lens.classList.toggle('open');btn.setAttribute('aria-expanded',open)};
+    feed.appendChild(el);
+  });
+}
+renderFeed('all');
+document.querySelectorAll('#filters button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');renderFeed(b.dataset.f);
+  };
+});
+
+/* open on the through-line by default so the panel isn't empty */
+showCell('safe','Safeguarding');
+</script>
+</body>
+</html>
